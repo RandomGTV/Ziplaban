@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { NavigationProvider, useNavigation } from './context/NavigationContext';
 import { CartProvider } from './context/CartContext';
 import GlobalNavbar from './components/navigation/GlobalNavbar';
-import Footer from './components/Footer';
-import MenuFooter from './components/menu/MenuFooter';
+import GlobalFooter from './components/footer/GlobalFooter';
 import CartDrawer from './components/CartDrawer';
 import SearchModal from './components/SearchModal';
 import FranchiseModal from './components/FranchiseModal';
@@ -76,8 +75,8 @@ function AppShell() {
         />
       </main>
 
-      {/* Global Footer */}
-      {currentPath.startsWith('/menu') || MENU_PRODUCTS.some(product => currentPath === `/product/${product.id}`) ? <MenuFooter /> : <Footer onOpenFranchise={() => setIsFranchiseOpen(true)} />}
+      {/* Universal Global Footer across all pages */}
+      <GlobalFooter onOpenFranchise={() => setIsFranchiseOpen(true)} />
 
       {/* Global Cart Slide-over Drawer */}
       <CartDrawer />
