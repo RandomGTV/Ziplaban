@@ -1,3 +1,5 @@
+import PageExperience from './components/experience/PageExperience';
+import { ORDERING_ENABLED, ORDERING_MESSAGE } from './config/ordering';
 import React, { useState } from 'react';
 import { NavigationProvider, useNavigation } from './context/NavigationContext';
 import { CartProvider } from './context/CartContext';
@@ -22,7 +24,9 @@ import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 function MainRouter({ onOpenFranchise, onOpenSearch }) {
-  const { currentPath } = useNavigation();
+  const { currentPath, navigate } = useNavigation();
+
+  if (!ORDERING_ENABLED && ['/cart', '/checkout'].some(path => currentPath.startsWith(path))) return <div className="zip-order-paused-page"><h1>Online ordering is taking a little break.</h1><p>{ORDERING_MESSAGE}</p><button onClick={() => navigate('/menu')}>Explore the menu</button></div>;
 
   // Route matching
   if (currentPath === '/' || currentPath === '') {
@@ -73,10 +77,10 @@ function AppShell() {
 
       {/* Dynamic Page Router */}
       <main className="flex-1 w-full">
-        <MainRouter
+        <PageExperience><MainRouter
           onOpenFranchise={() => setIsFranchiseOpen(true)}
           onOpenSearch={() => setIsSearchOpen(true)}
-        />
+        /></PageExperience>
       </main>
 
       {/* Universal Global Footer across all pages */}

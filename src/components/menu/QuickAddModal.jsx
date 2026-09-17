@@ -1,3 +1,4 @@
+import { ORDERING_ENABLED, ORDERING_MESSAGE } from '../../config/ordering';
 import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Check, Minus, Plus, ShoppingBag, X } from 'lucide-react';
@@ -30,7 +31,8 @@ export default function QuickAddModal({ product, onClose, onAdd }) {
         <fieldset><legend>Choose your size</legend><div className="menu-size-options">{product.sizes.map(option=><label key={option.label} className={size.label===option.label?'is-selected':''}><input type="radio" name="bowl-size" value={option.label} checked={size.label===option.label} onChange={()=>setSize(option)}/><strong>{option.label}</strong><span>{option.price?`+${money(option.price)}`:'Original size'}</span></label>)}</div></fieldset>
         {product.extras.length>0&&<fieldset><legend>A little extra happiness <span>Optional</span></legend><div className="menu-extra-options">{product.extras.map(extra=><label key={extra.id}><input type="checkbox" checked={extras.some(item=>item.id===extra.id)} onChange={()=>toggle(extra)}/><span>{extra.name}</span><strong>+{money(extra.price)}</strong></label>)}</div></fieldset>}
         <div className="menu-quick-bottom"><div className="menu-quantity" aria-label="Quantity"><button aria-label="Decrease quantity" disabled={quantity===1} onClick={()=>setQuantity(quantity-1)}><Minus size={16}/></button><output aria-label="Selected quantity">{quantity}</output><button aria-label="Increase quantity" disabled={quantity===20} onClick={()=>setQuantity(quantity+1)}><Plus size={16}/></button></div><span className="menu-quick-total" aria-live="polite">{money(total)}</span></div>
-        <button className="menu-primary menu-add-confirm" onClick={()=>onAdd(product,quantity,{size:size.label,unitPrice:product.price+size.price,extras:extras.map(extra=>`${extra.name} (+${money(extra.price)})`),extrasPrice:extrasTotal,openDrawer:false})}><ShoppingBag size={18}/> Add to Cart <Check size={18}/></button>
+        {!ORDERING_ENABLED && <p className="zip-order-status">{ORDERING_MESSAGE}</p>}
+        <button disabled={!ORDERING_ENABLED} className="menu-primary menu-add-confirm" onClick={()=>onAdd(product,quantity,{size:size.label,unitPrice:product.price+size.price,extras:extras.map(extra=>`${extra.name} (+${money(extra.price)})`),extrasPrice:extrasTotal,openDrawer:false})}><ShoppingBag size={18}/> {ORDERING_ENABLED ? 'Add to Cart' : 'Ordering temporarily paused'} <Check size={18}/></button>
       </div>
     </div>
   </dialog>,document.body);

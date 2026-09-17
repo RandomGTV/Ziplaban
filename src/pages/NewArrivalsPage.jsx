@@ -1,3 +1,4 @@
+import { ORDERING_ENABLED } from '../config/ordering';
 import React, { useRef } from 'react';
 import { useCart } from '../context/CartContext';
 import { useNavigation } from '../context/NavigationContext';
@@ -90,11 +91,12 @@ export default function NewArrivalsPage() {
       {/* ======================================================================= */}
       <div className="lg:hidden fixed bottom-4 inset-x-4 z-40">
         <button
+          disabled={!ORDERING_ENABLED}
           onClick={openDrawer}
           className="w-full py-4 rounded-full bg-[#073BB8] hover:bg-[#032B82] text-white font-black text-sm uppercase tracking-wider shadow-[0_10px_30px_rgba(7,59,184,0.4)] flex items-center justify-center gap-2.5 transition-transform active:scale-98"
         >
           <ShoppingBag size={18} />
-          <span>Order New Arrivals</span>
+          <span>{ORDERING_ENABLED ? 'Order New Arrivals' : 'Ordering temporarily paused'}</span>
           <ArrowRight size={16} />
         </button>
       </div>

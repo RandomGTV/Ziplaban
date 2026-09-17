@@ -1,3 +1,4 @@
+import { ORDERING_ENABLED } from '../config/ordering';
 /**
  * Centralized data configuration for ZIP LABAN Global Footer
  */
@@ -36,9 +37,9 @@ export const FOOTER_SECTIONS = {
   order: {
     title: "Order",
     links: [
-      { label: "Order Online", path: "/menu" },
+      { label: ORDERING_ENABLED ? "Order Online" : "Browse Menu", path: "/menu" },
       { label: "New Drops", path: "/new-arrivals" },
-      { label: "View Happiness Bag", path: "/cart" },
+      { label: ORDERING_ENABLED ? "View Happiness Bag" : "Find a Store", path: ORDERING_ENABLED ? "/cart" : "/locations" },
       { label: "Franchise Inquiries", action: "franchise", isAction: true },
     ],
   },

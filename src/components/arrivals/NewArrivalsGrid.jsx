@@ -1,3 +1,4 @@
+import { ORDERING_ENABLED } from '../../config/ordering';
 ﻿import React from 'react';
 import { ShoppingBag, ArrowRight, Sparkles } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
@@ -97,11 +98,11 @@ export default function NewArrivalsGrid({ products }) {
                 {/* Action Buttons */}
                 <div className="space-y-2 pt-2 border-t border-white/10">
                   <button
-                    onClick={() => handleAdd(product)}
+                    disabled={!ORDERING_ENABLED} onClick={() => handleAdd(product)}
                     className="w-full py-3 rounded-2xl bg-white text-[#073BB8] hover:bg-[#FFF8EE] font-black text-xs uppercase tracking-wider shadow-md hover:scale-[1.02] transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <ShoppingBag size={14} />
-                    <span>Add to Order</span>
+                    <span>{ORDERING_ENABLED ? 'Add to Order' : 'Ordering paused'}</span>
                   </button>
 
                   <button

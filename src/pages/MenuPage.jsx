@@ -1,3 +1,4 @@
+import { ORDERING_ENABLED } from '../config/ordering';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion, MotionConfig, useReducedMotion } from 'framer-motion';
 import { Check, ShoppingBag, X } from 'lucide-react';
@@ -43,7 +44,7 @@ export default function MenuPage() {
       </div>
     </section>
     <NewArrivalsCarousel onQuickAdd={setQuickProduct}/><MenuClosingMessage/>
-    <div className="menu-mobile-cart"><button onClick={openDrawer}><ShoppingBag size={19}/><span>View Cart <small>{itemCount} {itemCount===1?'item':'items'}</small></span><strong>{money(total)}</strong><span aria-hidden="true">→</span></button></div>
+    {ORDERING_ENABLED && <div className="menu-mobile-cart"><button onClick={openDrawer}><ShoppingBag size={19}/><span>View Cart <small>{itemCount} {itemCount===1?'item':'items'}</small></span><strong>{money(total)}</strong><span aria-hidden="true">→</span></button></div>}
     {quickProduct&&<QuickAddModal key={quickProduct.id} product={quickProduct} onClose={()=>setQuickProduct(null)} onAdd={add}/>}
     <AnimatePresence>{toast&&<motion.div role="status" className="menu-toast" initial={{opacity:0,y:12}} animate={{opacity:1,y:0}} exit={{opacity:0,y:12}}><Check size={19}/><span>Added to your happiness bag ♡</span><button onClick={()=>{setToast('');openDrawer();}}>View bag</button><button aria-label="Dismiss notification" onClick={()=>setToast('')}><X size={16}/></button></motion.div>}</AnimatePresence>
   </div></MotionConfig>;

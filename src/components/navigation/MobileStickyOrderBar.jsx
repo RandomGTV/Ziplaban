@@ -1,3 +1,4 @@
+import { ORDERING_ENABLED } from '../../config/ordering';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ShoppingBag } from 'lucide-react';
@@ -46,7 +47,7 @@ export default function MobileStickyOrderBar({ isMobileMenuOpen = false }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  if (isExcludedRoute) return null;
+  if (!ORDERING_ENABLED || isExcludedRoute) return null;
 
   return (
     <AnimatePresence>

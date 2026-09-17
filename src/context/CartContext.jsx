@@ -1,45 +1,31 @@
+import { ORDERING_ENABLED, ORDERING_MESSAGE } from '../config/ordering';
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { sound } from '../utils/audio';
 
 const CartContext = createContext(null);
 
 export function CartProvider({ children }) {
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 'salankatiya-pistachio',
-      cartItemId: 'salankatiya-pistachio-default',
-      name: 'Salankatiya (The G.O.A.T)',
-      price: 350,
-      currency: '₹',
-      quantity: 1,
-      size: 'Regular',
-      extras: ['Antep Pistachio Lava (+₹50)'],
-      imageType: 'salankatia',
-    },
-    {
-      id: 'koshari-royale',
-      cartItemId: 'koshari-royale-default',
-      name: 'Koshari Royale Dessert',
-      price: 350,
-      currency: '₹',
-      quantity: 1,
-      size: 'Regular',
-      extras: ['Biscoff Speculoos Crunch (+₹40)'],
-      imageType: 'koshari',
-    },
-  ]);
+  const [cartItems, setCartItems] = useState([]);
+  const [orderingNotice, setOrderingNotice] = useState(false);
+  const showOrderingNotice = () => setOrderingNotice(true);
+  useEffect(() => {
+    if (!orderingNotice) return;
+    const timer = setTimeout(() => setOrderingNotice(false), 6000);
+    return () => clearTimeout(timer);
+  }, [orderingNotice]);
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [promoCode, setPromoCode] = useState('');
   const [appliedPromo, setAppliedPromo] = useState(null);
   const [promoError, setPromoError] = useState('');
 
-  const openDrawer = () => setIsDrawerOpen(true);
+  const openDrawer = () => ORDERING_ENABLED ? setIsDrawerOpen(true) : showOrderingNotice();
   const closeDrawer = () => setIsDrawerOpen(false);
-  const toggleDrawer = () => setIsDrawerOpen((prev) => !prev);
+  const toggleDrawer = () => ORDERING_ENABLED ? setIsDrawerOpen((prev) => !prev) : showOrderingNotice();
 
   // Add item with customizable options
   const addToCart = (product, quantity = 1, options = {}) => {
+    if (!ORDERING_ENABLED) { showOrderingNotice(); return false; }
     sound.playPop();
     const size = options.size || 'Regular';
     const extras = [...(options.extras || [])];
@@ -155,6 +141,8 @@ export function CartProvider({ children }) {
   return (
     <CartContext.Provider
       value={{
+        orderingEnabled: ORDERING_ENABLED,
+        showOrderingNotice,
         cartItems,
         itemCount,
         subtotal,
@@ -179,6 +167,7 @@ export function CartProvider({ children }) {
       }}
     >
       {children}
+      {orderingNotice && <div className="zip-ordering-notice" role="status">{ORDERING_MESSAGE}<button aria-label="Dismiss ordering notice" onClick={() => setOrderingNotice(false)}>✕</button></div>}
     </CartContext.Provider>
   );
 }

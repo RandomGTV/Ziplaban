@@ -1,3 +1,4 @@
+import { ORDERING_ENABLED } from '../config/ordering';
 import React, { useState } from 'react';
 import { useNavigation } from '../context/NavigationContext';
 import { useCart } from '../context/CartContext';
@@ -272,11 +273,11 @@ export default function ProductDetailPage() {
 
               {/* Total & Button */}
               <button
-                onClick={handleAddToCart}
+                disabled={!ORDERING_ENABLED} onClick={handleAddToCart}
                 className="w-full py-4 bg-[#063BB6] hover:bg-[#022B84] text-white font-extrabold text-base rounded-2xl shadow-xl hover:shadow-2xl transition-all flex items-center justify-center gap-3 cursor-pointer"
                 style={{ fontFamily: 'var(--font-comic, "Fredoka", sans-serif)' }}
               >
-                <span>Add to Order</span>
+                <span>{ORDERING_ENABLED ? 'Add to Order' : 'Ordering paused'}</span>
                 <span>•</span>
                 <span>₹{totalPrice}</span>
                 <span>→</span>

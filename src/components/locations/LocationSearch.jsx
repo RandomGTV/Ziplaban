@@ -63,7 +63,7 @@ export default function LocationSearch({
       )}
 
       {/* Filter Tabs / Pills */}
-      <div className="flex items-center gap-2 pt-1">
+      <div className="flex flex-wrap items-center gap-2 pt-1">
         <span className="text-xs font-bold text-[#10204A]/60 hidden sm:inline mr-1">Filter:</span>
         {[
           { id: 'all', label: 'ALL LOCATIONS' },

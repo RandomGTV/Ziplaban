@@ -1,3 +1,4 @@
+import { ORDERING_ENABLED } from '../../config/ordering';
 import React from 'react';
 import { ArrowRight, ShoppingBag, Sparkles, Check } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
@@ -235,7 +236,7 @@ export default function FeatureProductSection({ product, index }) {
               </button>
 
               <button
-                onClick={handleAdd}
+                disabled={!ORDERING_ENABLED} onClick={handleAdd}
                 className={`inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full font-bold text-sm border hover:scale-[1.02] transition-all cursor-pointer ${
                   isDarkBackground
                     ? 'bg-white/10 hover:bg-white/20 border-white/30 text-white'
@@ -243,7 +244,7 @@ export default function FeatureProductSection({ product, index }) {
                 }`}
               >
                 <ShoppingBag size={16} />
-                <span>{product.actionLabel}</span>
+                <span>{ORDERING_ENABLED ? product.actionLabel : 'Ordering paused'}</span>
               </button>
             </div>
 

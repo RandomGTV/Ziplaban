@@ -1,3 +1,4 @@
+import { ORDERING_ENABLED } from '../../config/ordering';
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowRight, ShoppingBag, MapPin } from 'lucide-react';
@@ -197,11 +198,12 @@ export default function MobileMenu({ isOpen, onClose }) {
               <div className="grid grid-cols-2 gap-3">
                 <button
                   type="button"
+                  disabled={!ORDERING_ENABLED}
                   onClick={() => handleLinkClick('/menu')}
                   className="w-full py-3.5 px-4 rounded-xl bg-white text-[#073BB8] font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg transition-transform active:scale-95 cursor-pointer"
                   style={{ fontFamily: 'var(--font-comic, "Fredoka", sans-serif)' }}
                 >
-                  <span>Order Now</span>
+                  <span>{ORDERING_ENABLED ? 'Order Now' : 'Ordering paused'}</span>
                   <ArrowRight size={15} />
                 </button>
 

@@ -1,3 +1,4 @@
+import { ORDERING_ENABLED } from '../../config/ordering';
 ﻿import React from 'react';
 import { ArrowRight, ShoppingBag, Sparkles } from 'lucide-react';
 import { useNavigation } from '../../context/NavigationContext';
@@ -47,10 +48,10 @@ export default function NewArrivalsCTA({ onOrderClick }) {
         {/* Action Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
           <button
-            onClick={onOrderClick}
+            disabled={!ORDERING_ENABLED} onClick={onOrderClick}
             className="inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 sm:py-5 rounded-full bg-white text-[#073BB8] hover:bg-[#FFF8EE] font-black text-base shadow-[0_15px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-all cursor-pointer"
           >
-            <span>Order New Arrivals</span>
+            <span>{ORDERING_ENABLED ? 'Order New Arrivals' : 'Ordering paused'}</span>
             <ArrowRight size={18} />
           </button>
 
