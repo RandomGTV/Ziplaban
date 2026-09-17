@@ -14,7 +14,7 @@ export default function AboutHero({ onDiscoverClick }) {
         {/* Soft Radial Cream Glow */}
         <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-white/80 rounded-full blur-3xl" />
         {/* Deep Royal Blue Asymmetric Blob on the Right */}
-        <div className="absolute top-1/2 -right-32 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-br from-[#073BB8] via-[#0537A8] to-[#032B82] rounded-[80px] rotate-12 opacity-95 shadow-[0_30px_90px_rgba(7,59,184,0.3)] hidden lg:block" />
+        <div className="absolute top-[58%] -right-32 -translate-y-1/2 w-[650px] h-[650px] bg-gradient-to-br from-[#073BB8] via-[#0537A8] to-[#032B82] rounded-[80px] rotate-12 opacity-95 shadow-[0_30px_90px_rgba(7,59,184,0.3)] hidden lg:block" />
         {/* Mobile Asymmetric Blue Aura */}
         <div className="absolute bottom-0 right-0 w-full h-[40%] bg-gradient-to-t from-[#073BB8]/15 to-transparent lg:hidden" />
       </div>

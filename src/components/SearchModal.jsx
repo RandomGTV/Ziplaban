@@ -68,32 +68,32 @@ export default function SearchModal({ isOpen, onClose }) {
           className="relative max-w-xl mx-auto bg-white rounded-3xl shadow-2xl border border-[#063BB6]/15 overflow-hidden z-10"
         >
           {/* Search Header */}
-          <div className="p-4 border-b border-gray-100 flex items-center gap-3 bg-[#FFF9F1]">
-            <span className="text-xl text-[#063BB6]">🔍</span>
+          <div className="p-5 border-b border-gray-100 flex items-center gap-3 bg-[#FFF9F1]">
+            <span className="text-xl text-[#073BB8]">🔍</span>
             <input
               ref={inputRef}
               type="text"
-              placeholder="Search desserts, flavors (e.g. Pistachio, Kunafa, Koshari, Lotus)..."
+              placeholder="Search desserts..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-full bg-transparent text-[#10204A] placeholder-gray-400 font-medium focus:outline-none text-base sm:text-lg"
+              className="w-full bg-transparent text-[#10204A] placeholder-gray-400 font-medium focus:outline-none text-base sm:text-xl"
             />
             <button
               onClick={onClose}
-              className="px-2 py-1 bg-gray-200 text-gray-700 text-xs font-bold rounded-lg hover:bg-gray-300 cursor-pointer"
+              className="px-2.5 py-1 bg-gray-200 hover:bg-gray-300 text-gray-700 text-xs font-bold rounded-lg transition-colors cursor-pointer"
             >
               ESC
             </button>
           </div>
 
-          {/* Quick tags */}
-          <div className="px-4 py-2 bg-white flex items-center gap-2 overflow-x-auto text-xs border-b border-gray-50">
-            <span className="text-gray-400 font-semibold">Quick:</span>
-            {['Salankatiya', 'Koshari', 'Pistachio', 'Lotus', 'Fazea Cake', 'Kunafa'].map((tag) => (
+          {/* Quick suggestions */}
+          <div className="px-5 py-2.5 bg-white flex items-center gap-2 overflow-x-auto text-xs border-b border-gray-100">
+            <span className="text-gray-400 font-bold uppercase tracking-wider text-[10px]">Suggestions:</span>
+            {['Koshari', 'Pistachio', 'Lotus', 'Nutella', 'New Arrivals'].map((tag) => (
               <button
                 key={tag}
-                onClick={() => setQuery(tag)}
-                className="px-2.5 py-1 bg-[#FFF9F1] hover:bg-[#063BB6]/10 text-[#063BB6] rounded-full font-medium whitespace-nowrap cursor-pointer"
+                onClick={() => setQuery(tag === 'New Arrivals' ? 'Arrivals' : tag)}
+                className="px-3 py-1 bg-[#FFF9F1] hover:bg-[#073BB8]/10 text-[#073BB8] font-bold rounded-full transition-colors whitespace-nowrap cursor-pointer"
               >
                 {tag}
               </button>

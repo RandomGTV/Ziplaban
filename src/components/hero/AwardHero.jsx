@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Heart, Leaf, Pause, Play, Smile, UsersRound } from 'lucide-react';
 import { useNavigation } from '../../context/NavigationContext';
 import StoryVideoModal from './StoryVideoModal';
-import BrandNavigation from '../BrandNavigation';
 import './reference-hero.css';
 
 const benefits = [[Leaf, 'Premium', 'Ingredients'], [Heart, 'Freshly', 'Made'], [Smile, 'Desserts', 'for Everyone'], [UsersRound, 'A Sweeter', 'Tomorrow']];
@@ -30,7 +29,6 @@ export default function AwardHero({ onOpenSearch }) {
       <div className="reference-sparkles" aria-hidden="true">
         {Array.from({ length: 10 }, (_, index) => <i key={index} style={{ '--spark-x': `${8 + (index * 29) % 85}%`, '--spark-y': `${20 + (index * 17) % 57}%`, '--spark-delay': `${index * -.83}s`, '--spark-duration': `${5 + index % 4}s` }} />)}
       </div>
-      <BrandNavigation home onOpenSearch={onOpenSearch} onMenuOpenChange={setMobileOpen} />
       <div className="reference-copy">
         <p className="reference-eyebrow">Premium desserts. Bold flavours.</p>
         <h1 id="hero-title">Happiness <span aria-hidden="true">♡</span><br />in Every Bite</h1>
