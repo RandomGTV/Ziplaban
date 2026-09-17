@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@theme {
+  --color-sign-blue: #009BE8;
+  --color-sign-blue-dark: #0077B6;
+  --color-sign-blue-light: #E0F2FE;
+  --color-royal-blue: #073BB8;
+  --color-royal-blue-deep: #032B82;
+  --color-royal-blue-bright: #175EFF;
+  --color-zip-royal: #073BB8;
+  --color-zip-navy: #032B82;
+  --color-zip-electric: #175EFF;
+  --color-zip-cream: #FFF9F1;
+  --color-zip-white: #FFFFFF;
+  --color-zip-pistachio: #8DBA38;
+  --color-zip-dark: #0E245A;
+  --color-egyptian-cobalt: #0E245A;
+  --color-egyptian-midnight: #032B82;
+  --color-kashta-cream: #FFF9F1;
+  --color-kashta-soft: #F8F4EC;
+  --color-pistachio: #8DBA38;
+  --color-pistachio-deep: #065F46;
+  --color-lotus-gold: #D97706;
+  --color-lotus-warm: #B45309;
+  --color-belgian-truffle: #2D1A12;
+  --font-display: 'Fredoka', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-hand: 'Caveat', cursive;
+  --font-comic: 'Fredoka', sans-serif;
+}
+
+:root {
+  --font-display: 'Syne', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-hand: 'Caveat', cursive;
+  --font-comic: 'Fredoka', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  background-color: #FFFDF9;
+  color: #061826;
+  overflow-x: hidden;
+}
+
+/* Custom smooth scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F8F4EC;
+}
+::-webkit-scrollbar-thumb {
+  background: #009BE8;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0077B6;
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 155, 232, 0.15);
+}
+
+.glass-panel-dark {
+  background: rgba(6, 24, 38, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Glow effects */
+.glow-sign-blue {
+  box-shadow: 0 10px 40px -10px rgba(0, 155, 232, 0.35);
+}
+
+.glow-pistachio {
+  box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.4);
+}
+
+/* Kinetic marquee animation */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: 200%;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Gentle floating physics */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(1.5deg); }
+}
+
+@keyframes float-reverse {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(12px) rotate(-1.5deg); }
+}
+
+.animate-float {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: float-reverse 7s ease-in-out infinite;
+}
+
+/* Shimmer animation for luxury tags */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer-badge {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+

@@ -1,0 +1,26 @@
+.brand-nav {position:fixed;inset:0 0 auto;z-index:40;padding:18px 5.4%;color:#fff;transition:padding .3s,background .3s;}
+.brand-nav-inner {max-width:1380px;margin:auto;display:flex;align-items:flex-start;justify-content:space-between;gap:30px;}
+.brand-nav-logo {width:110px;height:95px;flex-shrink:0;background:url('/images/hero_reference_exact.jpg') -67.5px -15.7px / 1264px auto;border-radius:48% 48% 40% 40% / 22% 22% 18% 18%;transition:width .3s,height .3s;}
+.brand-nav-links {display:flex;gap:32px;padding-top:21px;}
+.brand-nav-links a {font-size:14px;font-weight:600;position:relative;padding:8px 0;text-decoration:none;color:white;white-space:nowrap;}
+.brand-nav-links a::after {content:'';position:absolute;bottom:0;left:-6px;right:-6px;height:2px;border-radius:4px;background:white;transform:scaleX(0);transition:transform .25s;}
+.brand-nav-links a[aria-current]::after,.brand-nav-links a:hover::after {transform:scaleX(1) rotate(1deg);}
+.brand-nav-actions {display:flex;gap:17px;align-items:center;padding-top:13px;}
+.brand-nav-actions button {border:0;background:transparent;color:inherit;padding:7px;cursor:pointer;}
+.brand-nav a:focus-visible,.brand-nav button:focus-visible {outline:3px solid #c5df8e;outline-offset:5px;}
+.brand-nav-order {display:flex;gap:13px;align-items:center;justify-content:center;background:#fff;color:#043cb8;text-decoration:none;font-size:14px;font-weight:800;border-radius:30px;padding:13px 27px;}
+.brand-nav-bag {position:relative;}
+.brand-cart-count {position:absolute;top:-2px;right:-6px;background:#cbe998;color:#07338c;border-radius:20px;min-width:18px;padding:1px 4px;font-size:10px;font-weight:800;animation:brand-count-pop .35s ease-out;}
+.brand-nav-toggle {display:none;}
+.brand-nav--scrolled {padding:9px max(4%,calc((100vw - 1420px)/2));}
+.brand-nav--scrolled .brand-nav-inner {padding:9px 24px;background:#043390ee;backdrop-filter:blur(16px);border:1px solid #ffffff25;border-radius:22px;box-shadow:0 8px 30px #09296620;align-items:center;}
+.brand-nav--scrolled .brand-nav-logo {width:55px;height:48px;background-size:632px auto;background-position:-34px -8px;}
+.brand-nav--scrolled .brand-nav-links,.brand-nav--scrolled .brand-nav-actions {padding-top:0;}
+.brand-nav--home:not(.brand-nav--scrolled) .brand-nav-logo {width:clamp(75px, 8.5vw, 115px);height:clamp(65px, 7.4vw, 100px);background-size:clamp(860px, 98vw, 1320px) auto;background-position:calc(-5.35 * clamp(8.6px, 0.98vw, 13.2px)) calc(-1.25 * clamp(8.6px, 0.98vw, 13.2px));}
+.brand-mobile-links {margin:12px auto 0;max-width:1380px;padding:16px;border-radius:20px;background:#032b82fa;border:1px solid #ffffff30;box-shadow:0 20px 50px #00246050;}
+.brand-mobile-links a {display:flex;justify-content:space-between;padding:12px;color:white;text-decoration:none;}
+@keyframes brand-count-pop {0%{transform:scale(.65)}60%{transform:scale(1.2)}100%{transform:scale(1)}}
+@media(max-width:1100px){.brand-nav-links{gap:20px}.brand-nav-inner{gap:16px}.brand-nav-actions{gap:10px}.brand-nav-order{padding:12px 20px}}
+@media(max-width:900px){.brand-nav-links{display:none}.brand-nav-toggle{display:block}.brand-nav-inner{align-items:center}.brand-nav-actions{padding-top:0}.brand-nav{padding:14px 24px}.brand-nav-logo,.brand-nav--home:not(.brand-nav--scrolled) .brand-nav-logo{width:78px;height:68px;background-size:896px auto;background-position:-48px -11px}.brand-nav--scrolled{padding:8px 12px}.brand-nav--scrolled .brand-nav-inner{padding:8px 14px}.brand-nav--scrolled .brand-nav-logo{width:48px;height:42px;background-size:554px auto;background-position:-30px -7px}}
+@media(max-width:500px){.brand-nav-order{display:none}.brand-nav-actions{gap:12px}}
+@media(prefers-reduced-motion:reduce){.brand-nav *,.brand-nav{animation:none!important;transition:none!important}}
