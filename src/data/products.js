@@ -349,34 +349,6 @@ export const PRODUCTS = [
   }
 ];
 
-export const MIXER_OPTIONS = {
-  bases: [
-    { id: 'kashta-sponge', name: 'Egyptian Milk Sponge', cal: 180, price: 120, color: '#FFF7ED', tag: 'Cloud Soft' },
-    { id: 'crispy-kunafa', name: 'Toasted Ghee Kunafa', cal: 220, price: 140, color: '#FEF08A', tag: 'Max Crunch' },
-    { id: 'rice-pudding', name: '6-Hour Chilled Rice Milk', cal: 160, price: 110, color: '#F8FAFC', tag: 'Velvety Classic' },
-    { id: 'belgian-brownie', name: 'Fudge Brownie Base', cal: 240, price: 150, color: '#451A03', tag: 'Deep Chocolate' },
-  ],
-  creams: [
-    { id: 'anteo-pistachio', name: 'Royal Pistachio Crema', cal: 160, price: 90, color: '#10B981', tag: 'Chef Recommended' },
-    { id: 'lotus-kashta', name: 'Spiced Lotus Kashta', cal: 150, price: 80, color: '#D97706', tag: 'Caramel Rich' },
-    { id: 'pure-kashta', name: '100% Clotted Buffalo Kashta', cal: 130, price: 70, color: '#F1F5F9', tag: 'Pure Heritage' },
-    { id: 'belgian-choc', name: 'Belgian Hazelnut Silk', cal: 170, price: 85, color: '#78350F', tag: 'Chocoholic' },
-  ],
-  toppings: [
-    { id: 'crushed-pistachio', name: 'Roasted Gaziantep Pistachios', cal: 60, price: 50, color: '#059669' },
-    { id: 'biscoff-crumb', name: 'Golden Biscoff Speculoos Crunch', cal: 70, price: 40, color: '#B45309' },
-    { id: 'fresh-strawberries', name: 'Fresh Alpine Strawberry Slices', cal: 30, price: 50, color: '#E11D48' },
-    { id: 'kunafa-threads', name: 'Toasted Golden Kunafa Strands', cal: 65, price: 45, color: '#EAB308' },
-    { id: 'honey-comb', name: 'Wild Blossom Honeycomb Chunk', cal: 50, price: 60, color: '#F59E0B' },
-  ],
-  drizzles: [
-    { id: 'warm-pistachio', name: 'Warm Pistachio Lava', cal: 80, price: 40, color: '#10B981' },
-    { id: 'warm-lotus', name: 'Warm Spiced Lotus Melt', cal: 85, price: 35, color: '#D97706' },
-    { id: 'dark-cocoa', name: 'Belgian Dark Fudge Drizzle', cal: 90, price: 40, color: '#1E1B4B' },
-    { id: 'pure-honey', name: 'Egyptian Orange Blossom Honey', cal: 60, price: 30, color: '#F59E0B' },
-  ]
-};
-
 export const STORES = [
   {
     id: 'kottakkal',

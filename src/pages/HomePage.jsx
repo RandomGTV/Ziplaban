@@ -336,40 +336,44 @@ export default function HomePage({ onOpenSearch }) {
       <ViralSocialReels />
 
       {/* ========================================================================= */}
-      {/* 5. BUILD YOUR BOWL CTA BANNER                                             */}
+      {/* 5. NEW ARRIVALS CAMPAIGN BANNER                                           */}
       {/* ========================================================================= */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="rounded-3xl bg-gradient-to-r from-[#063BB6] via-[#145DFF] to-[#022B84] p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div className="rounded-3xl bg-gradient-to-r from-[#032B82] via-[#073BB8] to-[#175EFF] p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8">
           <div className="relative z-10 max-w-xl">
-            <span className="text-xs font-extrabold uppercase tracking-widest bg-white/20 text-white px-3 py-1 rounded-full">
-              Interactive Builder
+            <span className="text-xs font-extrabold uppercase tracking-widest bg-white/20 text-[#8DBA38] px-3.5 py-1.5 rounded-full inline-flex items-center gap-1.5 backdrop-blur-md">
+              <span className="w-2 h-2 rounded-full bg-[#8DBA38] animate-ping" />
+              <span>JUST DROPPED • NEW COLLECTION</span>
             </span>
             <h2
-              className="text-3xl sm:text-4xl md:text-5xl font-black mt-3 leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl font-black mt-4 leading-tight uppercase tracking-tight"
               style={{ fontFamily: 'var(--font-comic, "Fredoka", sans-serif)' }}
             >
-              Build Your Own Happiness Bowl!
+              Meet Our New Arrivals!
             </h2>
-            <p className="text-sm sm:text-base text-blue-100 mt-2">
-              Choose your favorite sponge or kunafa base, cascade rich pistachio crema, add golden crunches, and finish with a warm molten lava pour.
+            <p className="text-sm sm:text-base text-blue-100/90 mt-2">
+              4 all-new handcrafted signatures just landed: Hazelnut Bar, Lawzi Creme, Le Zip De Paris, and Fazea Chocola Cake. Fresh in daily limited batches.
             </p>
             <button
-              onClick={() => navigate('/build-your-bowl')}
-              className="mt-6 px-8 py-3.5 rounded-full bg-white text-[#063BB6] hover:bg-[#FFF9F1] font-black text-sm sm:text-base shadow-xl hover:scale-105 transition-all cursor-pointer flex items-center gap-2"
+              onClick={() => navigate('/new-arrivals')}
+              className="mt-6 px-8 py-3.5 rounded-full bg-white text-[#073BB8] hover:bg-[#FFF8EE] font-black text-sm sm:text-base shadow-xl hover:scale-105 transition-all cursor-pointer flex items-center gap-2"
               style={{ fontFamily: 'var(--font-comic, "Fredoka", sans-serif)' }}
             >
-              <span>Launch Bowl Studio</span>
-              <span>🥣</span>
+              <span>Explore The Drop</span>
+              <span>→</span>
             </button>
           </div>
 
           <div className="relative z-10 flex-shrink-0">
-            <div className="w-48 sm:w-60 h-48 sm:h-60 rounded-full bg-white/10 p-3 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-2xl">
+            <div className="w-52 sm:w-64 h-52 sm:h-64 rounded-full bg-white/10 p-4 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-2xl relative group">
               <img
-                src="/images/salankatia.jpg"
-                alt="Happiness Bowl"
-                className="w-full h-full object-cover rounded-full shadow-inner"
+                src="/images/arrivals/fazea-chocola-cake.png"
+                alt="New Arrival Fazea Chocola Cake"
+                className="w-full h-full object-contain filter drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
               />
+              <span className="absolute -bottom-2 bg-[#8DBA38] text-[#10204A] text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+                ₹390 • Viral Hit
+              </span>
             </div>
           </div>
         </div>

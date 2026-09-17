@@ -3,7 +3,7 @@ import { AnimatePresence, motion, MotionConfig, useReducedMotion } from 'framer-
 import { Check, ShoppingBag, X } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { MENU_PRODUCTS, money } from '../data/menuCatalog';
-import { MenuHero, CategoryTabs, MenuToolbar, ProductGrid, FeaturedProduct, NewArrivalsCarousel, BuildYourBowlCTA, MenuEmptyState, MenuClosingMessage } from '../components/menu/MenuSections';
+import { MenuHero, CategoryTabs, MenuToolbar, ProductGrid, FeaturedProduct, NewArrivalsCarousel, MenuEmptyState, MenuClosingMessage } from '../components/menu/MenuSections';
 import QuickAddModal from '../components/menu/QuickAddModal';
 import './menu-page.css';
 
@@ -42,7 +42,7 @@ export default function MenuPage() {
         </motion.div></AnimatePresence>
       </div>
     </section>
-    <NewArrivalsCarousel onQuickAdd={setQuickProduct}/><BuildYourBowlCTA/><MenuClosingMessage/>
+    <NewArrivalsCarousel onQuickAdd={setQuickProduct}/><MenuClosingMessage/>
     <div className="menu-mobile-cart"><button onClick={openDrawer}><ShoppingBag size={19}/><span>View Cart <small>{itemCount} {itemCount===1?'item':'items'}</small></span><strong>{money(total)}</strong><span aria-hidden="true">→</span></button></div>
     {quickProduct&&<QuickAddModal key={quickProduct.id} product={quickProduct} onClose={()=>setQuickProduct(null)} onAdd={add}/>}
     <AnimatePresence>{toast&&<motion.div role="status" className="menu-toast" initial={{opacity:0,y:12}} animate={{opacity:1,y:0}} exit={{opacity:0,y:12}}><Check size={19}/><span>Added to your happiness bag ♡</span><button onClick={()=>{setToast('');openDrawer();}}>View bag</button><button aria-label="Dismiss notification" onClick={()=>setToast('')}><X size={16}/></button></motion.div>}</AnimatePresence>

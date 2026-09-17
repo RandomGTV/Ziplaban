@@ -21,7 +21,6 @@ export default function Navbar({ onOpenSearch }) {
     { name: 'Home', path: '/' },
     { name: 'Menu', path: '/menu' },
     { name: 'New Arrivals', path: '/new-arrivals' },
-    { name: 'Build Bowl', path: '/build-your-bowl' },
     { name: 'About', path: '/about' },
     { name: 'Locations', path: '/locations' },
     { name: 'Contact', path: '/contact' },
@@ -209,11 +208,11 @@ export default function Navbar({ onOpenSearch }) {
 
               <div className="pt-4 mt-2 border-t border-gray-100 flex flex-col gap-2">
                 <button
-                  onClick={() => handleNavClick('/build-your-bowl')}
-                  className="w-full py-3 rounded-2xl bg-gradient-to-r from-[#063BB6] to-[#145DFF] text-white font-bold text-center shadow-md flex items-center justify-center gap-2"
+                  onClick={() => handleNavClick('/new-arrivals')}
+                  className="w-full py-3 rounded-2xl bg-gradient-to-r from-[#063BB6] to-[#145DFF] text-white font-bold text-center shadow-md flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <span>Build Happiness Bowl</span>
-                  <span>🥣</span>
+                  <span>Explore New Arrivals</span>
+                  <span>✨</span>
                 </button>
               </div>
             </div>

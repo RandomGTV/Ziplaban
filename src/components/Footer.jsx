@@ -118,11 +118,6 @@ export default function Footer({ onOpenFranchise }) {
                   <span className="text-[10px] bg-[#8DB936] text-white px-1.5 py-0.2 rounded font-bold">DROP</span>
                 </button>
               </li>
-              <li>
-                <button onClick={() => handleLink('/build-your-bowl')} className="hover:text-white hover:underline cursor-pointer text-[#8DB936] font-bold">
-                  Build Happiness Bowl 🥣
-                </button>
-              </li>
             </ul>
           </div>
 

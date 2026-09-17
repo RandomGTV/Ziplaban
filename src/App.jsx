@@ -17,7 +17,6 @@ import NewArrivalsPage from './pages/NewArrivalsPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import MenuProductDetailPage from './pages/MenuProductDetailPage';
 import { MENU_PRODUCTS } from './data/menuCatalog';
-import BuildBowlPage from './pages/BuildBowlPage';
 import AboutPage from './pages/AboutPage';
 import CartPage from './pages/CartPage';
 import LocationsPage from './pages/LocationsPage';
@@ -39,9 +38,6 @@ function MainRouter({ onOpenFranchise, onOpenSearch }) {
   if (currentPath.startsWith('/product/')) {
     if (MENU_PRODUCTS.some(product => currentPath === `/product/${product.id}`)) return <MenuProductDetailPage key={currentPath} />;
     return <ProductDetailPage key={currentPath} />;
-  }
-  if (currentPath.startsWith('/build-your-bowl')) {
-    return <BuildBowlPage />;
   }
   if (currentPath.startsWith('/about')) {
     return <AboutPage />;
