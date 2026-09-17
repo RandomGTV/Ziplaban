@@ -4,7 +4,7 @@ import { useCart } from '../context/CartContext';
 import { useNavigation } from '../context/NavigationContext';
 import './BrandNavigation.css';
 const LINKS=[['Home','/'],['Menu','/menu'],['New Arrivals','/new-arrivals'],['About','/about'],['Locations','/locations'],['Contact','/contact']];
-export default function BrandNavigation({onOpenSearch,home=false,onMenuOpenChange}) {
+export default function BrandNavigation({onOpenSearch,home=false,light=false,onMenuOpenChange}) {
   const {currentPath,navigate}=useNavigation();
   const {itemCount,openDrawer}=useCart();
   const [scrolled,setScrolled]=useState(false);
@@ -13,7 +13,7 @@ export default function BrandNavigation({onOpenSearch,home=false,onMenuOpenChang
   useEffect(()=>{const update=()=>setScrolled(window.scrollY>45); update();window.addEventListener('scroll',update,{passive:true});return()=>window.removeEventListener('scroll',update);},[]);
   useEffect(()=>{const escape=(event)=>{if(event.key==='Escape'){setOpen(false);onMenuOpenChange?.(false);}};window.addEventListener('keydown',escape);return()=>window.removeEventListener('keydown',escape);},[onMenuOpenChange]);
   const go=(event,path)=>{event.preventDefault();toggle(false);navigate(path);};
-  return <header className={`brand-nav ${home?'brand-nav--home':''} ${scrolled?'brand-nav--scrolled':''}`}>
+  return <header className={`brand-nav ${home?'brand-nav--home':''} ${light?'brand-nav--light':''} ${scrolled?'brand-nav--scrolled':''}`}>
     <div className="brand-nav-inner">
       <a className="brand-nav-logo" href="/" aria-label="Zip Laban home" onClick={e=>go(e,'/')} />
       <nav aria-label="Main navigation" className="brand-nav-links">{LINKS.map(([label,path])=><a key={path} href={path} aria-current={currentPath===path?'page':undefined} onClick={e=>go(e,path)}>{label}</a>)}</nav>
