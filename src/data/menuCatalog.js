@@ -32,7 +32,7 @@ const arrivalInfo = [
   ['fazea-chocola-cake','Fazea Chocola Cake',390,3,'Rich chocolate cake, a creamy centre and a generous chocolate finish.',['Chocolate','Cake']],
 ];
 export const MENU_ARRIVALS = arrivalInfo.map(([id,name,price,imageCell,description,ingredients],i)=>({id,name,price,imageCell,description,ingredients,category:'arrivals',imageAsset:'arrivals',imageType:id,currency:'₹',rank:30+i,badge:'New',sizes:[MENU_SIZES[0]],extras:[],allergens:['Milk','Nuts','Wheat'],releaseOrder:4-i}));
-// Existing menu photography is framed without cropping the bowls or packaging.
+// Individual high-resolution cutouts replace the low-resolution poster crops.
 const otherInfo = [
   ['kabsa','Kabsa',380,'classics',[533,258,146,97],['Crunch','Cream']],
   ['creme-de-la-creme','Creme de la Creme',380,'classics',[304,253,146,102],['Cream','Chocolate']],
@@ -49,6 +49,6 @@ const otherInfo = [
   ['layalee-raffaello','Layalee Valvet Raffaello',320,'cakes',[431,474,160,114],['Raffaello','Cream']],
   ['mango-fusion','Mango Fusion',380,'classics',[619,460,132,132],['Mango','Cream']],
 ];
-const others=otherInfo.map(([id,name,price,category,imageCrop,ingredients],i)=>({id,name,price,category,imageCrop,ingredients,description:`Discover ${name}, a little more happiness from our Egyptian dessert menu.`,imageAsset:'classics',imageType:id,currency:'₹',rank:40+i,badge:'',sizes:[MENU_SIZES[0]],extras:[],allergens:['Milk','Nuts','Wheat']}));
+const others=otherInfo.map(([id,name,price,category,imageCrop,ingredients],i)=>({id,name,price,category,imageUrl:`/images/menu-classics/${id}.png`,ingredients,description:`Discover ${name}, a little more happiness from our Egyptian dessert menu.`,imageAsset:'classics',imageType:id,currency:'₹',rank:40+i,badge:'',sizes:[MENU_SIZES[0]],extras:[],allergens:['Milk','Nuts','Wheat']}));
 export const MENU_PRODUCTS = [...bowls,...MENU_ARRIVALS,...others];
 export const money = (value) => `₹${value.toLocaleString('en-IN')}`;
