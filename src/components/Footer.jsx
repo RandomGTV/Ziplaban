@@ -168,18 +168,22 @@ export default function Footer({ onOpenFranchise }) {
             </h4>
             <div className="space-y-3 text-sm text-blue-100/80">
               <div>
-                <p className="font-bold text-white">Palathara, Kottakkal (Flagship)</p>
+                <p className="font-bold text-white">Kottakkal (Flagship Lounge)</p>
                 <p className="text-xs text-blue-200">Palathara Bypass, Malappuram</p>
-                <p className="text-xs text-[#8DB936] font-semibold">Open daily: 11 AM – 2 AM</p>
+                <p className="text-xs text-[#8DB936] font-semibold">Open Daily • Late Night Dessert</p>
               </div>
               <div>
-                <p className="font-bold text-white">Kalikavu Branch</p>
-                <p className="text-xs text-blue-200">Nilambur Road, Kalikavu</p>
-                <p className="text-xs text-[#8DB936] font-semibold">Open daily: 12 PM – 1:30 AM</p>
+                <p className="font-bold text-white">Malappuram Branch</p>
+                <p className="text-xs text-blue-200">Fresh Clotted Cream Churn Counter</p>
+                <p className="text-xs text-[#8DB936] font-semibold">Open Daily • Midnight Churn</p>
               </div>
-              <div>
-                <p className="font-bold text-white">Perinthalmanna Hub</p>
-                <p className="text-xs text-blue-200">Calicut Road, Perinthalmanna</p>
+              <div className="pt-1">
+                <button
+                  onClick={() => handleLink('/locations')}
+                  className="text-xs font-bold text-white hover:text-[#8DB936] underline cursor-pointer"
+                >
+                  View Locations Map & Directions →
+                </button>
               </div>
             </div>
 
