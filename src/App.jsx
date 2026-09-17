@@ -71,7 +71,7 @@ function AppShell() {
       <CursorFollower />
 
       {/* Navigation Header for all inner routes */}
-      {!isHomePage && (currentPath.startsWith('/menu') || currentPath.startsWith('/new-arrivals') || currentPath.startsWith('/about') || MENU_PRODUCTS.some(product => currentPath === `/product/${product.id}`) ? <BrandNavigation light={currentPath.startsWith('/about')} onOpenSearch={() => setIsSearchOpen(true)} /> : <Navbar onOpenSearch={() => setIsSearchOpen(true)} />)}
+      {!isHomePage && (currentPath.startsWith('/menu') || currentPath.startsWith('/new-arrivals') || currentPath.startsWith('/about') || currentPath.startsWith('/locations') || MENU_PRODUCTS.some(product => currentPath === `/product/${product.id}`) ? <BrandNavigation light={currentPath.startsWith('/about')} onOpenSearch={() => setIsSearchOpen(true)} /> : <Navbar onOpenSearch={() => setIsSearchOpen(true)} />)}
 
       {/* Dynamic Page Router */}
       <main className="flex-1 w-full">
