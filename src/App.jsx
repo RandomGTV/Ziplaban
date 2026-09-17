@@ -19,6 +19,7 @@ import AboutPage from './pages/AboutPage';
 import CartPage from './pages/CartPage';
 import LocationsPage from './pages/LocationsPage';
 import ContactPage from './pages/ContactPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 function MainRouter({ onOpenFranchise, onOpenSearch }) {
   const { currentPath } = useNavigation();
@@ -49,9 +50,12 @@ function MainRouter({ onOpenFranchise, onOpenSearch }) {
   if (currentPath.startsWith('/contact')) {
     return <ContactPage onOpenFranchise={onOpenFranchise} />;
   }
+  if (currentPath === '/404') {
+    return <NotFoundPage onOpenSearch={onOpenSearch} />;
+  }
 
-  // Fallback to HomePage
-  return <HomePage onOpenSearch={onOpenSearch} />;
+  // Fallback to NotFoundPage for unknown URLs
+  return <NotFoundPage onOpenSearch={onOpenSearch} />;
 }
 
 function AppShell() {
