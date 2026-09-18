@@ -22,9 +22,9 @@ export default function AwardHero({ onOpenSearch }) {
   return (
     <section ref={heroRef} className="reference-hero" data-motion-paused={motionPaused || !inView} aria-labelledby="hero-title">
       <div className="reference-scene">
-      <img className="reference-hero__art" src="/images/hero-mascot-background.png" alt="" fetchPriority="high" />
-      <img className={`reference-hero__art reference-mascot${mascotBouncing ? ' reference-mascot--bounce' : ''}`} src="/images/hero-mascot-cutout.png" alt="Zip Laban mascot holding a dessert bowl" onAnimationEnd={(event) => { if (event.animationName === 'reference-mascot-bounce') setMascotBouncing(false); }} />
-      <img className="reference-hero__art reference-cream-front" src="/images/hero-cream-foreground.png" alt="" />
+      <img className="reference-hero__art" src="/images/hero-mascot-background-1536.webp" srcSet="/images/hero-mascot-background-640.webp 640w, /images/hero-mascot-background-1024.webp 1024w, /images/hero-mascot-background-1536.webp 1536w" sizes="100vw" width="1536" height="1024" alt="" fetchPriority="high" />
+      <img className={`reference-hero__art reference-mascot${mascotBouncing ? ' reference-mascot--bounce' : ''}`} src="/images/hero-mascot-cutout-1536.webp" srcSet="/images/hero-mascot-cutout-640.webp 640w, /images/hero-mascot-cutout-1024.webp 1024w, /images/hero-mascot-cutout-1536.webp 1536w" sizes="100vw" width="1536" height="1024" alt="Zip Laban mascot holding a dessert bowl" onAnimationEnd={(event) => { if (event.animationName === 'reference-mascot-bounce') setMascotBouncing(false); }} />
+      <img className="reference-hero__art reference-cream-front" src="/images/hero-cream-foreground-1536.webp" srcSet="/images/hero-cream-foreground-640.webp 640w, /images/hero-cream-foreground-1024.webp 1024w, /images/hero-cream-foreground-1536.webp 1536w" sizes="100vw" width="1536" height="1024" alt="" />
       <button className="reference-mascot-hitbox" aria-label="Make Zip bounce" title="Give Zip a little bounce!" onClick={() => { if (!motionPaused) setMascotBouncing(true); }} disabled={motionPaused} />
       </div>
       <div className="reference-sparkles" aria-hidden="true">
@@ -55,5 +55,3 @@ export default function AwardHero({ onOpenSearch }) {
     </section>
   );
 }
-
-

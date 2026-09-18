@@ -1,7 +1,8 @@
 import { flavourTheme } from '../utils/flavourTheme';
 import useMenuFavorites from '../hooks/useMenuFavorites';
 import { ORDERING_ENABLED } from '../config/ordering';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useNavigation } from '../context/NavigationContext';
 import { AnimatePresence, motion, MotionConfig, useReducedMotion } from 'framer-motion';
 import { Check, ShoppingBag, X } from 'lucide-react';
 import { useCart } from '../context/CartContext';
@@ -12,15 +13,22 @@ import './menu-page.css';
 
 export default function MenuPage() {
   const {addToCart,itemCount,total,openDrawer}=useCart();
-  const [category,setCategory]=useState('all');
-  const [query,setQuery]=useState('');
-  const [sort,setSort]=useState('popular');
+  const {menuBrowse}=useNavigation();
+  const [category,setCategory]=useState(()=>menuBrowse.current.category);
+  const [query,setQuery]=useState(()=>menuBrowse.current.query);
+  const [sort,setSort]=useState(()=>menuBrowse.current.sort);
   const [favorites,setFavorites]=useMenuFavorites();
-  const [favoritesOnly,setFavoritesOnly]=useState(false);
+  const [favoritesOnly,setFavoritesOnly]=useState(()=>menuBrowse.current.favoritesOnly);
   const [quickProduct,setQuickProduct]=useState(null);
   const [toast,setToast]=useState('');
   const resultsRef=useRef(null);
   const reduce=useReducedMotion();
+  useLayoutEffect(()=>{
+    window.scrollTo({top:menuBrowse.current.scrollY,behavior:'instant'});
+  },[menuBrowse]);
+  useEffect(()=>{
+    Object.assign(menuBrowse.current,{category,query,sort,favoritesOnly});
+  },[menuBrowse,category,query,sort,favoritesOnly]);
   useEffect(()=>{if(!toast)return;const timeout=setTimeout(()=>setToast(''),4000);return()=>clearTimeout(timeout);},[toast]);
   const products=useMemo(()=>{
     const words=query.toLowerCase().trim().split(/\s+/).filter(Boolean);
