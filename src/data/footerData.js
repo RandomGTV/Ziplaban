@@ -35,7 +35,7 @@ export const FOOTER_SECTIONS = {
     ],
   },
   order: {
-    title: "Order",
+    title: "Explore",
     links: [
       { label: ORDERING_ENABLED ? "Order Online" : "Browse Menu", path: "/menu" },
       { label: "New Drops", path: "/new-arrivals" },
@@ -47,7 +47,7 @@ export const FOOTER_SECTIONS = {
     title: "Locations",
     links: [
       { label: "Malappuram Branch", path: "/locations", subtext: "Fresh Kashta Churn Counter" },
-      { label: "Kottakkal (Flagship)", path: "/locations", subtext: "Palathara Bypass Lounge" },
+      { label: "Kottakkal Branch", path: "/locations", subtext: "Palathara Bypass Lounge" },
       { label: "View All Locations →", path: "/locations", highlight: true },
     ],
   },

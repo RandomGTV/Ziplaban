@@ -43,7 +43,7 @@ export default function LocationsCTA({ onSelectStore }) {
             style={{ fontFamily: 'var(--font-comic, "Fredoka", sans-serif)' }}
           >
             <MapPin size={18} className="text-white" />
-            <span>Kottakkal Flagship →</span>
+            <span>Kottakkal Branch →</span>
           </button>
         </div>
 

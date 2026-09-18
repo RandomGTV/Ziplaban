@@ -48,7 +48,7 @@ export default function StoreLocator() {
                       </h4>
                       {store.isFlagship && (
                         <span className="px-2 py-0.5 rounded-full bg-[#009BE8] text-white text-[9px] font-extrabold uppercase tracking-wider">
-                          Flagship
+                          Kottakkal Branch
                         </span>
                       )}
                     </div>

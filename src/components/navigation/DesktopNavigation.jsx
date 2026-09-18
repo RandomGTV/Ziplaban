@@ -77,27 +77,10 @@ export default function DesktopNavigation({ isScrolled = false, isLight = false,
           </button>
 
           {/* Cart Icon with Quantity Badge */}
-          <button
-            type="button"
-            onClick={openDrawer}
-            aria-label={`View shopping bag, ${itemCount} items`}
-            className={`relative w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-200 cursor-pointer ${iconColor}`}
-          >
-            <ShoppingBag size={21} />
-            {itemCount > 0 && (
-              <motion.span
-                key={itemCount}
-                initial={{ scale: 0.6 }}
-                animate={{ scale: 1 }}
-                className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 bg-[#8DBA38] text-white text-[10px] font-black rounded-full flex items-center justify-center border-2 border-[#032B82] shadow-sm"
-              >
-                {itemCount}
-              </motion.span>
-            )}
-          </button>
+          
 
           {/* Primary CTA: Order Now */}
-          <OrderButton isLight={isLight} isScrolled={isScrolled} />
+          
         </div>
       </div>
     </div>

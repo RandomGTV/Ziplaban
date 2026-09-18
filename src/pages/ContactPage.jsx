@@ -1,3 +1,4 @@
+import { FranchiseInvitation } from '../components/FranchiseModal';
 import React, { useState, useEffect } from 'react';
 import ContactHero from '../components/contact/ContactHero';
 import ContactOptions from '../components/contact/ContactOptions';
@@ -49,6 +50,7 @@ export default function ContactPage({ onOpenFranchise }) {
       <LocationsTeaser />
 
       {/* 8. Business & Collaborations Editorial Block */}
+      <FranchiseInvitation onOpen={onOpenFranchise} />
       <BusinessCTA onSelectSubject={handleSubjectSelect} />
 
       {/* 9. Bottom High-Conversion CTA */}

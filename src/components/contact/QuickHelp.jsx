@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ShoppingBag, MapPin, Utensils, ArrowRight } from 'lucide-react';
+import { MessageCircle, MapPin, Utensils, ArrowRight } from 'lucide-react';
 import { useNavigation } from '../../context/NavigationContext';
 import { QUICK_HELP_ITEMS, CONTACT_CONFIG } from '../../data/contactData';
 
@@ -10,7 +10,7 @@ export default function QuickHelp({ onSelectSubject }) {
   const handleAction = (item) => {
     if (item.actionType === 'support') {
       if (onSelectSubject) {
-        onSelectSubject('Order Support');
+        onSelectSubject('Branch Support');
       }
       const formEl = document.getElementById('contact-form');
       if (formEl) {
@@ -23,8 +23,8 @@ export default function QuickHelp({ onSelectSubject }) {
 
   const getIcon = (id) => {
     switch (id) {
-      case 'order-help':
-        return <ShoppingBag className="w-6 h-6 text-[#073BB8]" />;
+      case 'branch-help':
+        return <MessageCircle className="w-6 h-6 text-[#073BB8]" />;
       case 'find-store':
         return <MapPin className="w-6 h-6 text-[#8DBA38]" />;
       case 'menu-questions':

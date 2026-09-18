@@ -29,7 +29,7 @@ export default function ViralSocialReels() {
     },
     {
       id: 2,
-      title: 'Late Night Rush at Kottakkal Palathara Flagship: Layered Pistachio & Lotus Cups',
+      title: 'Late Night Rush at Kottakkal Kottakkal Branch: Layered Pistachio & Lotus Cups',
       creator: '@zip_laban',
       views: '3.6M',
       initialLikes: 189000,

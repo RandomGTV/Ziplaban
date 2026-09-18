@@ -337,7 +337,7 @@ export default function MenuShowcase({ onAddToBag = () => {} }) {
                     Official Zip Laban Menu
                   </h3>
                   <span className="text-xs text-gray-400 font-medium">
-                    Palathara, Kottakkal Flagship &bull; Verified Authentic Menu
+                    Palathara, Kottakkal Branch &bull; Verified Authentic Menu
                   </span>
                 </div>
               </div>

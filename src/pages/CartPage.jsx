@@ -96,7 +96,7 @@ export default function CartPage() {
             <div className="flex justify-between">
               <span className="text-gray-500">Fulfilled By:</span>
               <span className="font-bold">
-                {STORES.find((s) => s.id === selectedStore)?.name || 'Palathara Flagship'}
+                {STORES.find((s) => s.id === selectedStore)?.name || 'Kottakkal Branch'}
               </span>
             </div>
             <div className="flex justify-between">

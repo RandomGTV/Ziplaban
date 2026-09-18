@@ -1,11 +1,10 @@
 import PageExperience from './components/experience/PageExperience';
-import { ORDERING_ENABLED, ORDERING_MESSAGE } from './config/ordering';
+import { ORDERING_ENABLED } from './config/ordering';
 import React, { useState } from 'react';
 import { NavigationProvider, useNavigation } from './context/NavigationContext';
 import { CartProvider } from './context/CartContext';
 import GlobalNavbar from './components/navigation/GlobalNavbar';
 import GlobalFooter from './components/footer/GlobalFooter';
-import CartDrawer from './components/CartDrawer';
 import SearchModal from './components/SearchModal';
 import FranchiseModal from './components/FranchiseModal';
 import CursorFollower from './components/CursorFollower';
@@ -24,9 +23,9 @@ import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 function MainRouter({ onOpenFranchise, onOpenSearch }) {
-  const { currentPath, navigate } = useNavigation();
+  const { currentPath } = useNavigation();
 
-  if (!ORDERING_ENABLED && ['/cart', '/checkout'].some(path => currentPath.startsWith(path))) return <div className="zip-order-paused-page"><h1>Online ordering is taking a little break.</h1><p>{ORDERING_MESSAGE}</p><button onClick={() => navigate('/menu')}>Explore the menu</button></div>;
+  if (!ORDERING_ENABLED && ['/cart', '/checkout'].some(path => currentPath.startsWith(path))) return <NotFoundPage onOpenSearch={onOpenSearch} />;
 
   // Route matching
   if (currentPath === '/' || currentPath === '') {
@@ -86,8 +85,7 @@ function AppShell() {
       {/* Universal Global Footer across all pages */}
       <GlobalFooter onOpenFranchise={() => setIsFranchiseOpen(true)} />
 
-      {/* Global Cart Slide-over Drawer */}
-      <CartDrawer />
+
 
       {/* Instant Menu Search Modal */}
       <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />

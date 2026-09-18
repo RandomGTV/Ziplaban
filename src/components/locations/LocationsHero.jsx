@@ -68,7 +68,7 @@ export default function LocationsHero({ onFindBranchClick, activeStoreId, onSele
               className="px-7 py-4 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-md font-black text-sm sm:text-base shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer flex items-center gap-2"
               style={{ fontFamily: 'var(--font-comic, "Fredoka", sans-serif)' }}
             >
-              <span>Order Online</span>
+              <span>Explore Menu</span>
               <ArrowRight size={18} />
             </button>
           </div>
@@ -96,7 +96,7 @@ export default function LocationsHero({ onFindBranchClick, activeStoreId, onSele
               )}
             >
               <span className="w-2 h-2 rounded-full bg-[#175EFF] animate-pulse" />
-              <span>Kottakkal Flagship</span>
+              <span>Kottakkal Branch</span>
             </button>
           </div>
 

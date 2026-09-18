@@ -56,7 +56,7 @@ export default function ProcessSteps() {
             From Bowl to Smile
           </h2>
           <p className="text-base sm:text-lg text-[#10204A]/70 font-medium max-w-xl mx-auto">
-            The four mindful steps behind every single handcrafted dessert order.
+            The four mindful steps behind every single handcrafted dessert.
           </p>
         </div>
 

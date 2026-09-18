@@ -106,7 +106,7 @@ export function CartProvider({ children }) {
       sound.playSuccess();
       return true;
     } else if (cleanCode === 'KOTTAKKAL') {
-      setAppliedPromo({ code: 'KOTTAKKAL', discountType: 'flat', value: 40, label: '₹40 Flagship Welcome Off' });
+      setAppliedPromo({ code: 'KOTTAKKAL', discountType: 'flat', value: 40, label: '₹40 Kottakkal Branch Welcome Off' });
       sound.playSuccess();
       return true;
     } else {

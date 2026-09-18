@@ -24,7 +24,7 @@ export default function BranchCard({ store }) {
           </span>
           {store.isFlagship && (
             <span className="px-2.5 py-1 rounded-full bg-white text-[#073BB8] text-[10px] font-extrabold uppercase shadow-md">
-              👑 FLAGSHIP
+              KOTTAKKAL BRANCH
             </span>
           )}
         </div>
@@ -118,7 +118,7 @@ export default function BranchCard({ store }) {
             style={{ fontFamily: 'var(--font-comic, "Fredoka", sans-serif)' }}
           >
             <ShoppingBag size={15} />
-            <span>Order Online</span>
+            <span>Explore Menu</span>
           </button>
 
           <a

@@ -145,7 +145,7 @@ export default function AboutZipLaban() {
             </h3>
 
             <p className="text-sm sm:text-base text-gray-300 leading-relaxed mb-4">
-              Beginning from our flagship boutique at <strong className="text-white">Palathara, Kottakkal</strong> and expanding to <strong className="text-white">Kalikavu</strong> and surrounding regions in Malappuram, Zip Laban serves crowds of dessert lovers day and late into the night.
+              Beginning from our Kottakkal Branch at <strong className="text-white">Palathara, Kottakkal</strong> and expanding to <strong className="text-white">Kalikavu</strong> and surrounding regions in Malappuram, Zip Laban serves crowds of dessert lovers day and late into the night.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-sky-200">

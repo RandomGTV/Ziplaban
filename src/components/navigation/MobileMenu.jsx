@@ -194,28 +194,7 @@ export default function MobileMenu({ isOpen, onClose }) {
 
             {/* BOTTOM SECTION: CTAs, Cart, Outlets, Socials */}
             <div className="p-6 pt-4 border-t border-white/15 space-y-4 relative z-10 bg-[#02246D]/60 backdrop-blur-md">
-              {/* Primary Action Buttons */}
-              <div className="grid grid-cols-2 gap-3">
-                <button
-                  type="button"
-                  disabled={!ORDERING_ENABLED}
-                  onClick={() => handleLinkClick('/menu')}
-                  className="w-full py-3.5 px-4 rounded-xl bg-white text-[#073BB8] font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg transition-transform active:scale-95 cursor-pointer"
-                  style={{ fontFamily: 'var(--font-comic, "Fredoka", sans-serif)' }}
-                >
-                  <span>{ORDERING_ENABLED ? 'Order Now' : 'Ordering paused'}</span>
-                  <ArrowRight size={15} />
-                </button>
 
-                <button
-                  type="button"
-                  onClick={handleCartClick}
-                  className="w-full py-3.5 px-4 rounded-xl bg-white/15 hover:bg-white/25 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 border border-white/20 transition-colors cursor-pointer"
-                >
-                  <ShoppingBag size={16} />
-                  <span>Bag ({itemCount})</span>
-                </button>
-              </div>
 
               {/* Kerala Outlets Links */}
               <div className="flex items-center justify-between text-xs text-blue-100/90 pt-1 border-t border-white/10">

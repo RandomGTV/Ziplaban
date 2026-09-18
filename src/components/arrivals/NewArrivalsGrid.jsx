@@ -97,13 +97,7 @@ export default function NewArrivalsGrid({ products }) {
 
                 {/* Action Buttons */}
                 <div className="space-y-2 pt-2 border-t border-white/10">
-                  <button
-                    disabled={!ORDERING_ENABLED} onClick={() => handleAdd(product)}
-                    className="w-full py-3 rounded-2xl bg-white text-[#073BB8] hover:bg-[#FFF8EE] font-black text-xs uppercase tracking-wider shadow-md hover:scale-[1.02] transition-all flex items-center justify-center gap-2 cursor-pointer"
-                  >
-                    <ShoppingBag size={14} />
-                    <span>{ORDERING_ENABLED ? 'Add to Order' : 'Ordering paused'}</span>
-                  </button>
+                  
 
                   <button
                     onClick={() => navigate(`/product/${product.id}`)}

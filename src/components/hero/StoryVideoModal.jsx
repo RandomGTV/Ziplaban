@@ -64,7 +64,7 @@ export default function StoryVideoModal({ isOpen, onClose }) {
           <div className="p-6 bg-[#032B82] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-blue-200">
             <div className="flex items-center gap-3">
               <span className="text-xl">🏆</span>
-              <span>Authentic Egyptian Dairy Heritage • Kerala Flagship</span>
+              <span>Authentic Egyptian Dairy Heritage • Kottakkal Branch</span>
             </div>
 
             <a

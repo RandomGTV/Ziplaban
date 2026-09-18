@@ -352,17 +352,17 @@ export const PRODUCTS = [
 export const STORES = [
   {
     id: 'kottakkal',
-    name: 'Palathara, Kottakkal (Flagship)',
+    name: 'Palathara, Kottakkal Branch',
     landmark: 'Palathara Bypass Junction, Kottakkal',
     city: 'Malappuram, Kerala',
     hours: '11:00 AM – 2:00 AM (Midnight Churn)',
     status: 'Open Now',
     phone: '+91 98460 77889',
-    distance: 'Malappuram Flagship',
+    distance: 'Kottakkal Branch',
     aggregators: ['Swiggy', 'Zomato', 'Store Pickup & Dine-In'],
     isFlagship: true,
     image: '/images/mascot_store.png',
-    tagline: 'The First & Flagship Outlet of Zip Laban in Malappuram',
+    tagline: 'Visit the ZIP LABAN Kottakkal Branch',
   },
   {
     id: 'kalikavu',

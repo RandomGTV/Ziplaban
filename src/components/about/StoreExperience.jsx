@@ -64,7 +64,7 @@ export default function StoreExperience() {
                 style={{ fontFamily: 'var(--font-comic, "Fredoka", sans-serif)' }}
               >
                 <ShoppingBag size={18} />
-                <span>Order Online</span>
+                <span>Explore Menu</span>
               </button>
             </div>
 

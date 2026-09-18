@@ -104,7 +104,7 @@ export default function InteractiveMap({ locations, activeStoreId, onSelectStore
                 KOTTAKKAL
               </span>
               <span className="block text-[9px] font-bold text-white/80 whitespace-nowrap">
-                Flagship Store 👑
+                Kottakkal Branch 👑
               </span>
             </div>
           </motion.div>

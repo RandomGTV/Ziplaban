@@ -36,6 +36,7 @@ export default function PageExperience({ children }) {
   return () => { observer.disconnect(); elements.forEach(el => el.classList.remove('zip-section-reveal', 'zip-section-visible')); };
  }, [currentPath, paused, reduce]);
  return <div ref={scope} className="zip-page-experience">
+  {!reduce && !paused && <div key={`transition-${currentPath}`} className="zip-page-wipe" aria-hidden="true"><img src="/images/zip_boy_mascot.png" alt=""/><span>{({'/':'Home','/menu':'Our menu','/about':'Our story','/locations':'Our branches','/contact':'Say hello','/new-arrivals':'New arrivals'})[currentPath] || 'A little happiness'}</span><small>ZIP LABAN</small></div>}
   <div key={currentPath} className="zip-route-enter">{children}</div>
   <section className="zip-mascot-moment" aria-label="A little ZIP LABAN happiness">
    <div className="zip-mascot-stage" aria-hidden="true"><span className="zip-orbit zip-orbit-one">✦</span><span className="zip-orbit zip-orbit-two">♡</span><img src="/images/zip_boy_mascot.png" alt="" loading="lazy"/><span className="zip-mascot-shadow"/></div>

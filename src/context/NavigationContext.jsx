@@ -21,6 +21,7 @@ export function NavigationProvider({ children }) {
 
   const navigate = (toPath, state = {}) => {
     let target = toPath;
+    if (target === currentPath) return;
     if (target.startsWith('/product/')) {
       const slug = target.replace('/product/', '');
       setProductSlug(slug);
@@ -30,7 +31,7 @@ export function NavigationProvider({ children }) {
 
     if (typeof window !== 'undefined' && window.history) {
       window.history.pushState(state, '', target);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: 'instant' });
     }
   };
 
@@ -41,7 +42,7 @@ export function NavigationProvider({ children }) {
       if (path.startsWith('/product/')) {
         setProductSlug(path.replace('/product/', ''));
       }
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: 'instant' });
     };
 
     window.addEventListener('popstate', handlePopState);

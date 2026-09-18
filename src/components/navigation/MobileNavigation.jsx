@@ -49,24 +49,7 @@ export default function MobileNavigation({
           </button>
 
           {/* Cart Trigger with Quantity Badge */}
-          <button
-            type="button"
-            onClick={openDrawer}
-            aria-label={`View bag with ${itemCount} items`}
-            className={`relative w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-colors active:scale-95 ${iconColor}`}
-          >
-            <ShoppingBag size={22} />
-            {itemCount > 0 && (
-              <motion.span
-                key={itemCount}
-                initial={{ scale: 0.6 }}
-                animate={{ scale: 1 }}
-                className="absolute -top-0.5 -right-0.5 min-w-[17px] h-[17px] px-1 bg-[#8DBA38] text-white text-[10px] font-black rounded-full flex items-center justify-center border-2 border-[#032B82]"
-              >
-                {itemCount}
-              </motion.span>
-            )}
-          </button>
+          
 
           {/* Hamburger Menu Toggle */}
           <button

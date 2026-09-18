@@ -66,11 +66,11 @@ export const CONTACT_METHODS = [
 
 export const QUICK_HELP_ITEMS = [
   {
-    id: "order-help",
-    tag: "ORDER SUPPORT",
-    title: "Questions About Your Order?",
-    desc: "Need immediate help with a live order, takeaway timing, or dessert availability?",
-    buttonText: "Order Support →",
+    id: "branch-help",
+    tag: "BRANCH SUPPORT",
+    title: "Planning a Visit?",
+    desc: "Ask our team about branch timings, dessert availability, or your next visit.",
+    buttonText: "Branch Support →",
     actionType: "support",
   },
   {
@@ -106,9 +106,9 @@ export const FAQ_ITEMS = [
   },
   {
     id: "faq-3",
-    question: "Can I place an order online?",
+    question: "Where can I explore the desserts?",
     answer:
-      "Yes! Browse through our Menu or New Arrivals pages, add your favorite clotted cream creations and crunchy desserts to your bag, and complete your order inquiry seamlessly.",
+      "Explore our Menu and New Arrivals pages for desserts, flavours and prices. Visit our Locations page to find your nearest branch.",
   },
   {
     id: "faq-4",
@@ -136,9 +136,9 @@ export const LOCATIONS_TEASER_DATA = [
   {
     id: "kottakkal",
     name: "Kottakkal",
-    badge: "FLAGSHIP BRANCH",
+    badge: "KOTTAKKAL BRANCH",
     image: "/images/store_facade_2k.jpg",
-    tagline: "Flagship dessert lounge with signature crunch & cream bowls.",
+    tagline: "Kottakkal dessert lounge with signature crunch & cream bowls.",
     directionsUrl: "https://www.google.com/maps/search/?api=1&query=Zip+Laban+Kottakkal+Kerala",
   },
 ];

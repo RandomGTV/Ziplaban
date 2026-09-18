@@ -41,7 +41,7 @@ export default function BrandStory() {
               {/* Overlay Badge */}
               <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between text-white">
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#8DBA38] block">Flagship Atmosphere</span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#8DBA38] block">Kottakkal Branch</span>
                   <h4 
                     className="text-xl sm:text-2xl font-black"
                     style={{ fontFamily: 'var(--font-comic, "Fredoka", sans-serif)' }}

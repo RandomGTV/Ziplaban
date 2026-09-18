@@ -136,13 +136,7 @@ export default function CravingMatcher({ products }) {
                 </div>
 
                 <div className="pt-3 flex flex-wrap items-center gap-3">
-                  <button
-                    disabled={!ORDERING_ENABLED} onClick={handleAdd}
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#073BB8] hover:bg-[#032B82] text-white font-black text-sm shadow-md hover:scale-[1.02] transition-all cursor-pointer"
-                  >
-                    <ShoppingBag size={15} />
-                    <span>{ORDERING_ENABLED ? 'Add to Order' : 'Ordering paused'}</span>
-                  </button>
+                  
 
                   <button
                     onClick={() => navigate(`/product/${currentMatch.id}`)}

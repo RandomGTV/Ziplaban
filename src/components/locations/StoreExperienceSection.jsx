@@ -78,7 +78,7 @@ export default function StoreExperienceSection({ locations }) {
                     className="px-6 py-3.5 rounded-full bg-[#073BB8] hover:bg-[#052E99] text-white border border-white/25 font-black text-xs sm:text-sm shadow-lg flex items-center gap-2 active:scale-95 transition-all cursor-pointer"
                     style={{ fontFamily: 'var(--font-comic, "Fredoka", sans-serif)' }}
                   >
-                    <span>Order Now</span>
+                    <span>Explore Menu</span>
                     <ArrowRight size={15} />
                   </button>
                 </div>

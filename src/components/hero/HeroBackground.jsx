@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 export default function HeroBackground({ mousePosition = { x: 0, y: 0 } }) {
   return (
     <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none bg-[#032B82]">
-      {/* Base Clean Environment Image (Sky, City, Trees, Flagship Storefront) */}
+      {/* Base Clean Environment Image (Sky, City, Trees, Kottakkal Branchfront) */}
       <motion.div
         animate={{
           x: mousePosition.x * -6,

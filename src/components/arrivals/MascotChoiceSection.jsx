@@ -72,14 +72,7 @@ export default function MascotChoiceSection({ products }) {
           </h4>
           <div className="flex items-center justify-between pt-1.5">
             <span className="text-sm font-black text-[#073BB8]">₹{p.price}</span>
-            <button
-              disabled={!ORDERING_ENABLED} onClick={(e) => handleAdd(p, e)}
-              className="p-2 rounded-full bg-[#073BB8]/10 hover:bg-[#073BB8] text-[#073BB8] hover:text-white transition-colors cursor-pointer"
-              title="Quick Add to Bag"
-              aria-label={`Add ${p.name} to order`}
-            >
-              <ShoppingBag size={14} />
-            </button>
+            
           </div>
         </div>
       </motion.div>
