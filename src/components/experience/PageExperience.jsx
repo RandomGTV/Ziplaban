@@ -21,6 +21,13 @@ export default function PageExperience({ children }) {
  }, []);
  const [paused, setPaused] = useState(false);
  const scope = useRef(null);
+ const [reaction,setReaction] = useState(null);
+ useEffect(() => {
+  const react = event => setReaction({message:event.detail, key:Date.now()});
+  window.addEventListener('zip:mascot-reaction',react);
+  return () => window.removeEventListener('zip:mascot-reaction',react);
+ },[]);
+ useEffect(() => { if (!reaction) return; const timer=setTimeout(()=>setReaction(null),3200);return()=>clearTimeout(timer); },[reaction]);
  const copy = messages[currentPath] || (currentPath.startsWith('/product/') ? ['Love at first spoonful.', 'Find the flavours that make your day a little sweeter.'] : ['A little happiness is waiting.', 'Let’s find your way to something sweet.']);
  useEffect(() => {
   document.documentElement.classList.toggle('zip-motion-paused', paused || !!reduce);
@@ -36,8 +43,9 @@ export default function PageExperience({ children }) {
   return () => { observer.disconnect(); elements.forEach(el => el.classList.remove('zip-section-reveal', 'zip-section-visible')); };
  }, [currentPath, paused, reduce]);
  return <div ref={scope} className="zip-page-experience">
-  {!reduce && !paused && <div key={`transition-${currentPath}`} className="zip-page-wipe" aria-hidden="true"><img src="/images/zip_boy_mascot.png" alt=""/><span>{({'/':'Home','/menu':'Our menu','/about':'Our story','/locations':'Our branches','/contact':'Say hello','/new-arrivals':'New arrivals'})[currentPath] || 'A little happiness'}</span><small>ZIP LABAN</small></div>}
+  {!reduce && !paused && <div key={`transition-${currentPath}`} className="zip-page-wipe" aria-hidden="true"><img src="/images/zip_boy_mascot.png" alt=""/><span>{({'/':'Home','/menu':'Our menu','/about':'Our story','/locations':'Our branches','/contact':'Say hello','/new-arrivals':'New arrivals'})[currentPath] || 'A little happiness'}</span><small>ZIP LABAN</small><svg className="zip-transition-wave" viewBox="0 0 1440 140" preserveAspectRatio="none"><path d="M0 0H1440V45Q1320 135 1200 72T960 70T720 76T480 64T240 78T0 50Z" fill="currentColor"/></svg></div>}
   <div key={currentPath} className="zip-route-enter">{children}</div>
+  {reaction && <div key={reaction.key} className="zip-mascot-reaction" role="status"><img src="/images/zip_boy_mascot.png" alt=""/><span>{reaction.message}</span><button aria-label="Dismiss mascot message" onClick={()=>setReaction(null)}>×</button></div>}
   <section className="zip-mascot-moment" aria-label="A little ZIP LABAN happiness">
    <div className="zip-mascot-stage" aria-hidden="true"><span className="zip-orbit zip-orbit-one">✦</span><span className="zip-orbit zip-orbit-two">♡</span><img src="/images/zip_boy_mascot.png" alt="" loading="lazy"/><span className="zip-mascot-shadow"/></div>
    <div className="zip-moment-copy"><span className="zip-moment-eyebrow"><Sparkles size={15}/> MORE HAPPINESS, PLEASE</span><h2>{copy[0]}</h2><p>{copy[1]}</p><button onClick={() => navigate(currentPath === '/menu' ? '/locations' : '/menu')}>{currentPath === '/menu' ? 'Find your store' : 'Explore the menu'} <ArrowRight size={17}/></button></div>

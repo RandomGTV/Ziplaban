@@ -1,3 +1,4 @@
+import { flavourTheme } from '../utils/flavourTheme';
 import useMenuFavorites from '../hooks/useMenuFavorites';
 import { ORDERING_ENABLED } from '../config/ordering';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
@@ -32,11 +33,11 @@ export default function MenuPage() {
   const add=(product,quantity,options)=>{addToCart(product,quantity,options);setQuickProduct(null);setToast(`${Date.now()}`);};
   const editorial=category==='all'&&!query.trim()&&!favoritesOnly&&sort==='popular';
   const first=editorial?products.slice(0,6):products;
-  return <MotionConfig reducedMotion="user"><div className="premium-menu">
+  return <MotionConfig reducedMotion="user"><div className="premium-menu" data-flavour={flavourTheme(query)}>
     <MenuHero onBrowse={browse}/><CategoryTabs selected={category} onSelect={chooseCategory}/>
     <section className="menu-catalog menu-container" ref={resultsRef}>
       <MenuToolbar query={query} onQuery={setQuery} sort={sort} onSort={setSort} count={products.length} favoritesOnly={favoritesOnly} onFavorites={()=>setFavoritesOnly(!favoritesOnly)}/>
-      <div className="menu-flavour-shortcuts"><span>In the mood for</span>{['Pistachio','Lotus','Nutella'].map(flavour=><button key={flavour} className={query===flavour?'is-selected':''} onClick={()=>setQuery(query===flavour?'':flavour)}>{flavour} <span>↗</span></button>)}</div>
+      <div className="menu-flavour-shortcuts"><span>In the mood for</span>{['Pistachio','Lotus','Nutella','Mango','Strawberry'].map(flavour=><button key={flavour} className={query===flavour?'is-selected':''} onClick={()=>setQuery(query===flavour?'':flavour)}>{flavour} <span>↗</span></button>)}</div>
       <div id="menu-results" role="tabpanel" aria-labelledby={`category-${category}`} tabIndex={-1} className="menu-results">
         <AnimatePresence mode="wait" initial={false}><motion.div key={`${category}:${query}:${sort}:${favoritesOnly}`} initial={reduce?false:{opacity:0,y:10}} animate={{opacity:1,y:0}} exit={{opacity:0,y:8}} transition={{duration:reduce?0:.16}}>
           {products.length?<><ProductGrid products={first} favorites={favorites} onFavorite={favorite} onQuickAdd={setQuickProduct}/>{editorial&&<><FeaturedProduct product={MENU_PRODUCTS[0]} onQuickAdd={setQuickProduct}/><div className="menu-more-heading"><span className="menu-eyebrow">KEEP THE GOOD SPOONS COMING</span><h2>More to fall in love with.</h2><p>From signature bowls to Egyptian classics. Find your next favourite.</p></div><ProductGrid products={products.slice(6)} favorites={favorites} onFavorite={favorite} onQuickAdd={setQuickProduct}/></>}</>:<MenuEmptyState onReset={reset}/>}
