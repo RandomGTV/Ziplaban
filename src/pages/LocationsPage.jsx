@@ -187,14 +187,7 @@ export default function LocationsPage() {
           <span>Get Directions ({activeStore.name})</span>
         </a>
 
-        <button
-          onClick={() => navigate('/menu')}
-          className="px-4 py-3 rounded-2xl bg-[#8DBA38] text-white text-xs font-black flex items-center justify-center gap-1.5 shadow-md active:scale-95 cursor-pointer"
-          style={{ fontFamily: 'var(--font-comic, "Fredoka", sans-serif)' }}
-        >
-          <ShoppingBag size={14} />
-          <span>Order</span>
-        </button>
+        
       </div>
 
     </div>

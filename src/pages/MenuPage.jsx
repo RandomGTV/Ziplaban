@@ -1,3 +1,4 @@
+import useMenuFavorites from '../hooks/useMenuFavorites';
 import { ORDERING_ENABLED } from '../config/ordering';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion, MotionConfig, useReducedMotion } from 'framer-motion';
@@ -13,13 +14,12 @@ export default function MenuPage() {
   const [category,setCategory]=useState('all');
   const [query,setQuery]=useState('');
   const [sort,setSort]=useState('popular');
-  const [favorites,setFavorites]=useState(()=>{try{const saved=JSON.parse(localStorage.getItem('zip-menu-favourites')||'[]');return Array.isArray(saved)?saved:[];}catch{return [];}});
+  const [favorites,setFavorites]=useMenuFavorites();
   const [favoritesOnly,setFavoritesOnly]=useState(false);
   const [quickProduct,setQuickProduct]=useState(null);
   const [toast,setToast]=useState('');
   const resultsRef=useRef(null);
   const reduce=useReducedMotion();
-  useEffect(()=>{try{localStorage.setItem('zip-menu-favourites',JSON.stringify(favorites));}catch{/* Favourites remain usable when storage is unavailable. */}},[favorites]);
   useEffect(()=>{if(!toast)return;const timeout=setTimeout(()=>setToast(''),4000);return()=>clearTimeout(timeout);},[toast]);
   const products=useMemo(()=>{
     const words=query.toLowerCase().trim().split(/\s+/).filter(Boolean);

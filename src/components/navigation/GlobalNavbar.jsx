@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import DesktopNavigation from './DesktopNavigation';
 import MobileNavigation from './MobileNavigation';
 import MobileMenu from './MobileMenu';
@@ -9,6 +9,7 @@ export default function GlobalNavbar({ onOpenSearch, light: manualLight }) {
   const { currentPath } = useNavigation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const closeMobileMenu = useCallback(() => setIsMobileMenuOpen(false), []);
 
   // Automatically determine if page has a light top background unless explicitly overridden
   // Note: Home, Menu, New Arrivals, Locations, and Contact all have deep royal blue heroes
@@ -60,7 +61,7 @@ export default function GlobalNavbar({ onOpenSearch, light: manualLight }) {
       {/* Slide-in Mobile Drawer Menu */}
       <MobileMenu
         isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
+        onClose={closeMobileMenu}
       />
 
       {/* Intelligent Mobile Floating Sticky Order Bar */}

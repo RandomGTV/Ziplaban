@@ -6,7 +6,7 @@ export function NavigationProvider({ children }) {
   // Read initial path from window.location.pathname or default to '/'
   const [currentPath, setCurrentPath] = useState(() => {
     if (typeof window !== 'undefined' && window.location.pathname) {
-      return window.location.pathname;
+      return window.location.pathname.replace(/\/+$/, '') || '/';
     }
     return '/';
   });
@@ -20,7 +20,7 @@ export function NavigationProvider({ children }) {
   });
 
   const navigate = (toPath, state = {}) => {
-    let target = toPath;
+    let target = toPath.replace(/\/+$/, '') || '/';
     if (target === currentPath) return;
     if (target.startsWith('/product/')) {
       const slug = target.replace('/product/', '');
@@ -37,7 +37,7 @@ export function NavigationProvider({ children }) {
 
   useEffect(() => {
     const handlePopState = () => {
-      const path = window.location.pathname || '/';
+      const path = window.location.pathname.replace(/\/+$/, '') || '/';
       setCurrentPath(path);
       if (path.startsWith('/product/')) {
         setProductSlug(path.replace('/product/', ''));

@@ -67,7 +67,7 @@ export default function ContactHero() {
 
           {/* Subtitle */}
           <p className="text-base sm:text-lg text-blue-100/90 font-medium max-w-xl mx-auto lg:mx-0 leading-relaxed">
-            We’d love to hear from you. For orders, questions, collaborations, event catering or just to say hi!
+            We’d love to hear from you. For questions, collaborations, event catering or just to say hi!
           </p>
 
           {/* Dual CTAs */}

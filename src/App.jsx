@@ -1,6 +1,7 @@
+import { PRODUCTS } from './data/products';
 import PageExperience from './components/experience/PageExperience';
 import { ORDERING_ENABLED } from './config/ordering';
-import React, { useState } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { NavigationProvider, useNavigation } from './context/NavigationContext';
 import { CartProvider } from './context/CartContext';
 import GlobalNavbar from './components/navigation/GlobalNavbar';
@@ -9,18 +10,20 @@ import SearchModal from './components/SearchModal';
 import FranchiseModal from './components/FranchiseModal';
 import CursorFollower from './components/CursorFollower';
 
-// Pages
+import RouteBoundary from './components/experience/RouteBoundary';
+
+// Keep the landing page immediate; load other pages only when visited.
 import HomePage from './pages/HomePage';
-import MenuPage from './pages/MenuPage';
-import NewArrivalsPage from './pages/NewArrivalsPage';
-import ProductDetailPage from './pages/ProductDetailPage';
-import MenuProductDetailPage from './pages/MenuProductDetailPage';
+const MenuPage = lazy(() => import('./pages/MenuPage'));
+const NewArrivalsPage = lazy(() => import('./pages/NewArrivalsPage'));
+const ProductDetailPage = lazy(() => import('./pages/ProductDetailPage'));
+const MenuProductDetailPage = lazy(() => import('./pages/MenuProductDetailPage'));
 import { MENU_PRODUCTS } from './data/menuCatalog';
-import AboutPage from './pages/AboutPage';
-import CartPage from './pages/CartPage';
-import LocationsPage from './pages/LocationsPage';
-import ContactPage from './pages/ContactPage';
-import NotFoundPage from './pages/NotFoundPage';
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const CartPage = lazy(() => import('./pages/CartPage'));
+const LocationsPage = lazy(() => import('./pages/LocationsPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 function MainRouter({ onOpenFranchise, onOpenSearch }) {
   const { currentPath } = useNavigation();
@@ -31,26 +34,26 @@ function MainRouter({ onOpenFranchise, onOpenSearch }) {
   if (currentPath === '/' || currentPath === '') {
     return <HomePage onOpenSearch={onOpenSearch} />;
   }
-  if (currentPath.startsWith('/menu')) {
+  if (currentPath === '/menu') {
     return <MenuPage />;
   }
-  if (currentPath.startsWith('/new-arrivals')) {
+  if (currentPath === '/new-arrivals') {
     return <NewArrivalsPage />;
   }
   if (currentPath.startsWith('/product/')) {
     if (MENU_PRODUCTS.some(product => currentPath === `/product/${product.id}`)) return <MenuProductDetailPage key={currentPath} />;
-    return <ProductDetailPage key={currentPath} />;
+    return PRODUCTS.some(product => currentPath === `/product/${product.id}`) ? <ProductDetailPage key={currentPath} /> : <NotFoundPage onOpenSearch={onOpenSearch} />;
   }
-  if (currentPath.startsWith('/about')) {
+  if (currentPath === '/about') {
     return <AboutPage />;
   }
-  if (currentPath.startsWith('/cart')) {
+  if (currentPath === '/cart') {
     return <CartPage />;
   }
-  if (currentPath.startsWith('/locations')) {
+  if (currentPath === '/locations') {
     return <LocationsPage />;
   }
-  if (currentPath.startsWith('/contact')) {
+  if (currentPath === '/contact') {
     return <ContactPage onOpenFranchise={onOpenFranchise} />;
   }
   if (currentPath === '/404') {
@@ -65,6 +68,15 @@ function AppShell() {
   const { currentPath } = useNavigation();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isFranchiseOpen, setIsFranchiseOpen] = useState(false);
+  useEffect(() => {
+    const handleSearch = event => {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k' && !isFranchiseOpen) {
+        event.preventDefault(); setIsSearchOpen(open => !open);
+      }
+    };
+    window.addEventListener('keydown', handleSearch);
+    return () => window.removeEventListener('keydown', handleSearch);
+  }, [isFranchiseOpen]);
 
   return (
     <div className="min-h-screen bg-[#FFFDF9] text-[#061826] flex flex-col relative selection:bg-[#073BB8] selection:text-white">
@@ -76,10 +88,10 @@ function AppShell() {
 
       {/* Dynamic Page Router */}
       <main className="flex-1 w-full">
-        <PageExperience><MainRouter
+        <RouteBoundary key={currentPath}><Suspense fallback={<div className="zip-route-loading" role="status"><span className="zip-loading-dot"/> A little happiness is loading…</div>}><PageExperience><MainRouter
           onOpenFranchise={() => setIsFranchiseOpen(true)}
           onOpenSearch={() => setIsSearchOpen(true)}
-        /></PageExperience>
+        /></PageExperience></Suspense></RouteBoundary>
       </main>
 
       {/* Universal Global Footer across all pages */}

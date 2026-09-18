@@ -48,7 +48,7 @@ export default function NewArrivalsHero({ onExploreClick }) {
                 NEW
               </span>
               <span 
-                className="block text-7xl sm:text-8xl lg:text-[106px] font-black text-white uppercase tracking-tighter drop-shadow-2xl"
+                className="block text-[clamp(2.75rem,16vw,6rem)] sm:text-8xl lg:text-[106px] font-black text-white uppercase tracking-tighter drop-shadow-2xl"
                 style={{ fontFamily: 'var(--font-comic, "Fredoka", sans-serif)' }}
               >
                 ARRIVALS

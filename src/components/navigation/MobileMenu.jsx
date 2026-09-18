@@ -1,5 +1,5 @@
 import { ORDERING_ENABLED } from '../../config/ordering';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowRight, ShoppingBag, MapPin } from 'lucide-react';
 import ZipLogo from './ZipLogo';
@@ -36,27 +36,33 @@ export default function MobileMenu({ isOpen, onClose }) {
   const { currentPath, navigate } = useNavigation();
   const { itemCount, openDrawer } = useCart();
 
+  const panel = useRef(null);
+
   // Prevent background body scroll while menu is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isOpen]);
-
-  // ESC key dismiss
-  useEffect(() => {
-    const handleKey = (e) => {
-      if (e.key === 'Escape' && isOpen) {
-        onClose();
-      }
+    if (!isOpen) return;
+    const previous = document.activeElement;
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const background = [...document.querySelectorAll('main, header, footer')];
+    const previousInert = background.map(el => el.inert);
+    background.forEach(el => { el.inert = true; });
+    panel.current?.querySelector('[aria-label="Close menu"]')?.focus();
+    const handleKey = event => {
+      if (event.key === 'Escape') { event.preventDefault(); onClose(); }
+      if (event.key !== 'Tab') return;
+      const controls = [...panel.current.querySelectorAll('a[href], button:not([disabled]), input, [tabindex="0"]')].filter(el => el.getClientRects().length);
+      const first = controls[0], last = controls.at(-1);
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
     };
     window.addEventListener('keydown', handleKey);
-    return () => window.removeEventListener('keydown', handleKey);
+    return () => {
+      document.body.style.overflow = overflow;
+      background.forEach((el,index) => { el.inert = previousInert[index]; });
+      window.removeEventListener('keydown', handleKey);
+      previous?.focus();
+    };
   }, [isOpen, onClose]);
 
   const handleLinkClick = (path) => {
@@ -76,6 +82,7 @@ export default function MobileMenu({ isOpen, onClose }) {
         <div
           id="mobile-navigation-menu"
           role="dialog"
+          ref={panel}
           aria-modal="true"
           aria-label="Navigation Menu"
           className="fixed inset-0 z-50 flex justify-end select-none"

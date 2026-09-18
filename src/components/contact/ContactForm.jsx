@@ -1,3 +1,4 @@
+import { CONTACT_CONFIG } from '../../data/contactData';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, CheckCircle2, AlertCircle, ArrowRight, Heart, Sparkles } from 'lucide-react';
@@ -21,7 +22,7 @@ export default function ContactForm({ selectedSubject, onSubjectChange }) {
     phone: '',
     subject: selectedSubject || 'General Enquiry',
     message: '',
-    agreeConsent: true,
+    agreeConsent: false,
   });
 
   const [errors, setErrors] = useState({});
@@ -58,7 +59,9 @@ export default function ContactForm({ selectedSubject, onSubjectChange }) {
       newErrors.message = 'Please provide a little more detail (at least 10 characters).';
     }
 
+    if (!formData.agreeConsent) newErrors.agreeConsent = 'Please agree to be contacted about this enquiry.';
     setErrors(newErrors);
+    if (Object.keys(newErrors).length) document.getElementById(Object.keys(newErrors)[0])?.focus();
     return Object.keys(newErrors).length === 0;
   };
 
@@ -66,12 +69,7 @@ export default function ContactForm({ selectedSubject, onSubjectChange }) {
     e.preventDefault();
     if (!validate()) return;
 
-    setIsSubmitting(true);
-    // Smooth optimistic submission simulation
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSuccess(true);
-    }, 600);
+    setIsSuccess(true);
   };
 
   const handleReset = () => {
@@ -81,7 +79,7 @@ export default function ContactForm({ selectedSubject, onSubjectChange }) {
       phone: '',
       subject: 'General Enquiry',
       message: '',
-      agreeConsent: true,
+      agreeConsent: false,
     });
     setErrors({});
     setIsSuccess(false);
@@ -124,14 +122,15 @@ export default function ContactForm({ selectedSubject, onSubjectChange }) {
                       className="text-3xl sm:text-4xl font-black text-[#10204A]"
                       style={{ fontFamily: 'var(--font-comic, "Fredoka", sans-serif)' }}
                     >
-                      Message Sent! ♡
+                      Your message is ready. ♡
                     </h3>
                     <p className="text-sm sm:text-base text-gray-600 max-w-md mx-auto leading-relaxed font-medium">
                       Thanks for reaching out, <span className="font-bold text-[#073BB8]">{formData.fullName || 'friend'}</span>.
-                      We’ll get back to you as soon as possible!
+                      Open your email draft below, then send it from your email app. Nothing has been sent yet.
                     </p>
                   </div>
 
+                  <a className="inline-flex px-6 py-3 rounded-full bg-[#073BB8] text-white font-bold" href={`mailto:${CONTACT_CONFIG.email}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.fullName}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\n${formData.message}`)}`}>Open email draft →</a>
                   <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
                     <button
                       type="button"
@@ -146,7 +145,7 @@ export default function ContactForm({ selectedSubject, onSubjectChange }) {
                       onClick={handleReset}
                       className="w-full sm:w-auto px-6 py-3.5 bg-white text-gray-700 hover:text-[#073BB8] border border-gray-300 font-bold text-xs sm:text-sm rounded-2xl transition-all duration-200 cursor-pointer"
                     >
-                      Send Another Message
+                      Write Another Message
                     </button>
                   </div>
                 </motion.div>
@@ -173,6 +172,7 @@ export default function ContactForm({ selectedSubject, onSubjectChange }) {
                     </p>
                   </div>
 
+                  <p className="text-xs text-gray-600 mb-5">We’ll prepare an email with your details. Send it from your email app, or write directly to <a className="underline" href={`mailto:${CONTACT_CONFIG.email}`}>{CONTACT_CONFIG.email}</a>.</p>
                   <form onSubmit={handleSubmit} noValidate className="space-y-5">
                     {/* Full Name & Email Row */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -181,7 +181,7 @@ export default function ContactForm({ selectedSubject, onSubjectChange }) {
                           Full Name <span className="text-[#073BB8]">*</span>
                         </label>
                         <input
-                          id="fullName"
+                          id="fullName" aria-invalid={!!errors.fullName} aria-describedby={errors.fullName ? 'fullName-error' : undefined}
                           type="text"
                           required
                           value={formData.fullName}
@@ -197,7 +197,7 @@ export default function ContactForm({ selectedSubject, onSubjectChange }) {
                         {errors.fullName && (
                           <p className="text-[11px] font-semibold text-red-500 mt-1 flex items-center gap-1">
                             <AlertCircle size={12} />
-                            <span>{errors.fullName}</span>
+                            <span id="fullName-error" role="alert">{errors.fullName}</span>
                           </p>
                         )}
                       </div>
@@ -207,7 +207,7 @@ export default function ContactForm({ selectedSubject, onSubjectChange }) {
                           Email Address <span className="text-[#073BB8]">*</span>
                         </label>
                         <input
-                          id="email"
+                          id="email" aria-invalid={!!errors.email} aria-describedby={errors.email ? 'email-error' : undefined}
                           type="email"
                           required
                           value={formData.email}
@@ -223,7 +223,7 @@ export default function ContactForm({ selectedSubject, onSubjectChange }) {
                         {errors.email && (
                           <p className="text-[11px] font-semibold text-red-500 mt-1 flex items-center gap-1">
                             <AlertCircle size={12} />
-                            <span>{errors.email}</span>
+                            <span id="email-error" role="alert">{errors.email}</span>
                           </p>
                         )}
                       </div>
@@ -250,7 +250,7 @@ export default function ContactForm({ selectedSubject, onSubjectChange }) {
                           Subject <span className="text-[#073BB8]">*</span>
                         </label>
                         <select
-                          id="subject"
+                          id="subject" aria-invalid={!!errors.subject} aria-describedby={errors.subject ? 'subject-error' : undefined}
                           value={formData.subject}
                           onChange={(e) => {
                             setFormData({ ...formData, subject: e.target.value });
@@ -273,7 +273,7 @@ export default function ContactForm({ selectedSubject, onSubjectChange }) {
                         Message <span className="text-[#073BB8]">*</span>
                       </label>
                       <textarea
-                        id="message"
+                        id="message" aria-invalid={!!errors.message} aria-describedby={errors.message ? 'message-error' : undefined}
                         rows={4}
                         required
                         value={formData.message}
@@ -289,7 +289,7 @@ export default function ContactForm({ selectedSubject, onSubjectChange }) {
                       {errors.message && (
                         <p className="text-[11px] font-semibold text-red-500 mt-1 flex items-center gap-1">
                           <AlertCircle size={12} />
-                          <span>{errors.message}</span>
+                          <span id="message-error" role="alert">{errors.message}</span>
                         </p>
                       )}
                     </div>
@@ -297,7 +297,7 @@ export default function ContactForm({ selectedSubject, onSubjectChange }) {
                     {/* Checkbox Consent */}
                     <div className="flex items-start gap-2.5 pt-1">
                       <input
-                        id="agreeConsent"
+                        id="agreeConsent" aria-invalid={!!errors.agreeConsent} aria-describedby={errors.agreeConsent ? 'consent-error' : undefined}
                         type="checkbox"
                         checked={formData.agreeConsent}
                         onChange={(e) => setFormData({ ...formData, agreeConsent: e.target.checked })}
@@ -308,6 +308,7 @@ export default function ContactForm({ selectedSubject, onSubjectChange }) {
                       </label>
                     </div>
 
+                    {errors.agreeConsent && <p id="consent-error" role="alert" className="text-xs text-red-600">{errors.agreeConsent}</p>}
                     {/* Submit Button */}
                     <button
                       type="submit"
@@ -319,7 +320,7 @@ export default function ContactForm({ selectedSubject, onSubjectChange }) {
                         <span>Sending Message...</span>
                       ) : (
                         <>
-                          <span>Send Message</span>
+                          <span>Prepare Email</span>
                           <Send size={16} />
                         </>
                       )}
