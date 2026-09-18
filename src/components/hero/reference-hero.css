@@ -215,3 +215,20 @@
 @media(max-width:540px){.reference-hero{padding-top:112px}.reference-copy h1{font-size:clamp(44px,12.2vw,64px)}.reference-benefits{grid-template-columns:repeat(2,1fr);gap:12px 0}.reference-benefits li{justify-content:flex-start;padding-left:10px}.reference-benefits li:nth-child(2){border:0}.reference-hero__art{bottom:210px;height:470px}.reference-bottom{margin-top:360px}.reference-mascot-hitbox{bottom:270px}.reference-hero::before{background:linear-gradient(180deg,#0646a8 0%,#0646a8 30%,transparent 42%)}}
 .reference-bowl{background:none;overflow:visible}.reference-bowl .menu-product-image{width:100%;height:100%}
 @media(max-width:540px){.reference-bottom{margin-top:440px}}
+/* A real scene box keeps every registered artwork layer at the same aspect ratio. */
+.reference-scene{display:contents}
+@media(max-width:1023px){
+ .reference-copy{order:1}
+ .reference-hero::before{display:none}
+ .reference-scene{display:block;position:relative;order:2;aspect-ratio:3/2;width:113.636364%;margin:24px -6.818182% 0;overflow:hidden;isolation:isolate;background:#0646a8}
+ .reference-scene::after{content:'';position:absolute;inset:0 0 auto;height:35px;background:linear-gradient(#0646a8,transparent);pointer-events:none;z-index:2}
+ .reference-scene .reference-hero__art{inset:0;width:100%;height:100%;object-fit:contain;object-position:center;}
+ .reference-scene .reference-mascot{transform-origin:59% 76%;translate:0 1.8%}
+ .reference-scene .reference-cream-front{translate:0 3.125%}
+ .reference-scene .reference-mascot-hitbox{left:40%;top:14%;bottom:auto;width:44%;height:66%}
+ .reference-bottom{order:3;margin:0 -6.818182% -28px;padding:16px 6% 34px;background:#fffaf2;gap:12px}
+ .reference-benefits{background:#f3efe7;border-color:#07348712}
+ .reference-sparkles{display:none}
+ .reference-motion-toggle{z-index:3;bottom:6px}
+}
+@media(min-width:768px) and (max-width:1023px){.reference-copy{max-width:none}.reference-bottom{display:grid;grid-template-columns:minmax(0,1fr) 260px;align-items:stretch}.reference-benefits{grid-template-columns:repeat(2,1fr);gap:10px 0}.reference-arrivals{height:100%;min-height:88px;padding-inline:14px;gap:10px}.reference-arrivals>span:nth-child(2){font-size:13px}.reference-bowl{width:65px}}

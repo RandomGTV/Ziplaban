@@ -21,10 +21,12 @@ export default function AwardHero({ onOpenSearch }) {
   const go = (path) => navigate(path);
   return (
     <section ref={heroRef} className="reference-hero" data-motion-paused={motionPaused || !inView} aria-labelledby="hero-title">
+      <div className="reference-scene">
       <img className="reference-hero__art" src="/images/hero-mascot-background.png" alt="" fetchPriority="high" />
       <img className={`reference-hero__art reference-mascot${mascotBouncing ? ' reference-mascot--bounce' : ''}`} src="/images/hero-mascot-cutout.png" alt="Zip Laban mascot holding a dessert bowl" onAnimationEnd={(event) => { if (event.animationName === 'reference-mascot-bounce') setMascotBouncing(false); }} />
       <img className="reference-hero__art reference-cream-front" src="/images/hero-cream-foreground.png" alt="" />
       <button className="reference-mascot-hitbox" aria-label="Make Zip bounce" title="Give Zip a little bounce!" onClick={() => { if (!motionPaused) setMascotBouncing(true); }} disabled={motionPaused} />
+      </div>
       <div className="reference-sparkles" aria-hidden="true">
         {Array.from({ length: 10 }, (_, index) => <i key={index} style={{ '--spark-x': `${8 + (index * 29) % 85}%`, '--spark-y': `${20 + (index * 17) % 57}%`, '--spark-delay': `${index * -.83}s`, '--spark-duration': `${5 + index % 4}s` }} />)}
       </div>
