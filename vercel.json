@@ -1,8 +1,191 @@
 {
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "handle": "filesystem"
+    },
+    {
+      "src": "/menu/?",
+      "dest": "/menu.html"
+    },
+    {
+      "src": "/new-arrivals/?",
+      "dest": "/new-arrivals.html"
+    },
+    {
+      "src": "/about/?",
+      "dest": "/about.html"
+    },
+    {
+      "src": "/locations/?",
+      "dest": "/locations.html"
+    },
+    {
+      "src": "/contact/?",
+      "dest": "/contact.html"
+    },
+    {
+      "src": "/product/pistachio-dream/?",
+      "dest": "/product/pistachio-dream.html"
+    },
+    {
+      "src": "/product/salankatiya-pistachio/?",
+      "dest": "/product/salankatiya-pistachio.html"
+    },
+    {
+      "src": "/product/koshari-royale/?",
+      "dest": "/product/koshari-royale.html"
+    },
+    {
+      "src": "/product/ruh-hayati/?",
+      "dest": "/product/ruh-hayati.html"
+    },
+    {
+      "src": "/product/kabsa-crunch/?",
+      "dest": "/product/kabsa-crunch.html"
+    },
+    {
+      "src": "/product/creme-de-la-creme/?",
+      "dest": "/product/creme-de-la-creme.html"
+    },
+    {
+      "src": "/product/hebba-cake/?",
+      "dest": "/product/hebba-cake.html"
+    },
+    {
+      "src": "/product/layalee-valvet/?",
+      "dest": "/product/layalee-valvet.html"
+    },
+    {
+      "src": "/product/mango-fusion/?",
+      "dest": "/product/mango-fusion.html"
+    },
+    {
+      "src": "/product/lazy-cat/?",
+      "dest": "/product/lazy-cat.html"
+    },
+    {
+      "src": "/product/cheese-bomb/?",
+      "dest": "/product/cheese-bomb.html"
+    },
+    {
+      "src": "/product/al-mazia/?",
+      "dest": "/product/al-mazia.html"
+    },
+    {
+      "src": "/product/louah-kinder/?",
+      "dest": "/product/louah-kinder.html"
+    },
+    {
+      "src": "/product/lawzi-creme/?",
+      "dest": "/product/lawzi-creme.html"
+    },
+    {
+      "src": "/product/le-zip-de-paris/?",
+      "dest": "/product/le-zip-de-paris.html"
+    },
+    {
+      "src": "/product/fazea-chocola-cake/?",
+      "dest": "/product/fazea-chocola-cake.html"
+    },
+    {
+      "src": "/product/hazalnut-bar/?",
+      "dest": "/product/hazalnut-bar.html"
+    },
+    {
+      "src": "/product/koshari-trio/?",
+      "dest": "/product/koshari-trio.html"
+    },
+    {
+      "src": "/product/salankatiya-pistachio-nutella/?",
+      "dest": "/product/salankatiya-pistachio-nutella.html"
+    },
+    {
+      "src": "/product/ruh-hayathi-pistachio-nutella/?",
+      "dest": "/product/ruh-hayathi-pistachio-nutella.html"
+    },
+    {
+      "src": "/product/koshari-pistachio-lotus/?",
+      "dest": "/product/koshari-pistachio-lotus.html"
+    },
+    {
+      "src": "/product/salankatiya-pistachio-lotus/?",
+      "dest": "/product/salankatiya-pistachio-lotus.html"
+    },
+    {
+      "src": "/product/ruh-hayathi-pistachio-lotus/?",
+      "dest": "/product/ruh-hayathi-pistachio-lotus.html"
+    },
+    {
+      "src": "/product/koshari-nutella-lotus/?",
+      "dest": "/product/koshari-nutella-lotus.html"
+    },
+    {
+      "src": "/product/koshari-kinder-nutella/?",
+      "dest": "/product/koshari-kinder-nutella.html"
+    },
+    {
+      "src": "/product/koshari-pistachio-nutella/?",
+      "dest": "/product/koshari-pistachio-nutella.html"
+    },
+    {
+      "src": "/product/salankatiya-nutella-lotus/?",
+      "dest": "/product/salankatiya-nutella-lotus.html"
+    },
+    {
+      "src": "/product/salankatiya-kinder-nutella/?",
+      "dest": "/product/salankatiya-kinder-nutella.html"
+    },
+    {
+      "src": "/product/salankatiya-trio/?",
+      "dest": "/product/salankatiya-trio.html"
+    },
+    {
+      "src": "/product/ruh-hayathi-nutella-lotus/?",
+      "dest": "/product/ruh-hayathi-nutella-lotus.html"
+    },
+    {
+      "src": "/product/kabsa/?",
+      "dest": "/product/kabsa.html"
+    },
+    {
+      "src": "/product/louah-nutella-pistachio-kinder/?",
+      "dest": "/product/louah-nutella-pistachio-kinder.html"
+    },
+    {
+      "src": "/product/louah-chocolate-kinder/?",
+      "dest": "/product/louah-chocolate-kinder.html"
+    },
+    {
+      "src": "/product/hebba-kinder/?",
+      "dest": "/product/hebba-kinder.html"
+    },
+    {
+      "src": "/product/hebba-pista/?",
+      "dest": "/product/hebba-pista.html"
+    },
+    {
+      "src": "/product/hebba-nutella/?",
+      "dest": "/product/hebba-nutella.html"
+    },
+    {
+      "src": "/product/hebba-belgium/?",
+      "dest": "/product/hebba-belgium.html"
+    },
+    {
+      "src": "/product/layalee-strawberry/?",
+      "dest": "/product/layalee-strawberry.html"
+    },
+    {
+      "src": "/product/layalee-raffaello/?",
+      "dest": "/product/layalee-raffaello.html"
+    },
+    {
+      "src": "/api/.*",
+      "status": 404
+    },
+    {
+      "src": "/.*",
+      "dest": "/index.html"
     }
   ]
 }

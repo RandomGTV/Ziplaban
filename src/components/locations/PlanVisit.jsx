@@ -1,6 +1,6 @@
 import React from 'react';
 import { Compass, Navigation, UtensilsCrossed } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion } from '../../context/MotionPreference';
 
 export default function PlanVisit({ onScrollToMap }) {
   const steps = [

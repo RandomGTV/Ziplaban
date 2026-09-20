@@ -1,3 +1,4 @@
+import { useMotionPreference } from '../../context/MotionPreference';
 import React, { useEffect, useRef, useState } from 'react';
 import { Pause, Play, Sparkles, ArrowRight } from 'lucide-react';
 import { useNavigation } from '../../context/NavigationContext';
@@ -12,14 +13,7 @@ const messages = {
 };
 export default function PageExperience({ children }) {
  const { currentPath, navigate } = useNavigation();
- const [reduce, setReduce] = useState(() => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
- useEffect(() => {
-  const media = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const update = () => setReduce(media.matches);
-  media.addEventListener('change', update);
-  return () => media.removeEventListener('change', update);
- }, []);
- const [paused, setPaused] = useState(false);
+ const {reduce, paused, setPaused} = useMotionPreference();
  const scope = useRef(null);
  const [reaction,setReaction] = useState(null);
  useEffect(() => {
@@ -29,10 +23,7 @@ export default function PageExperience({ children }) {
  },[]);
  useEffect(() => { if (!reaction) return; const timer=setTimeout(()=>setReaction(null),3200);return()=>clearTimeout(timer); },[reaction]);
  const copy = messages[currentPath] || (currentPath.startsWith('/product/') ? ['Love at first spoonful.', 'Find the flavours that make your day a little sweeter.'] : ['A little happiness is waiting.', 'Let’s find your way to something sweet.']);
- useEffect(() => {
-  document.documentElement.classList.toggle('zip-motion-paused', paused || !!reduce);
-  return () => document.documentElement.classList.remove('zip-motion-paused');
- }, [paused, reduce]);
+
  useEffect(() => {
   if (paused || reduce || !window.IntersectionObserver) return;
   const elements = [...scope.current.querySelectorAll('section')].filter(el => el.getBoundingClientRect().top > window.innerHeight && !el.closest('.award-hero'));

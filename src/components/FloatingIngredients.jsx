@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from '../context/MotionPreference';
 
 export default function FloatingIngredients({ count = 6, className = '' }) {
   const ingredients = [

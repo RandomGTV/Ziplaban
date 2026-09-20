@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from '../../context/MotionPreference';
 import { ArrowDown, ArrowRight, Sparkles, MessageCircleHeart } from 'lucide-react';
 import { useNavigation } from '../../context/NavigationContext';
 

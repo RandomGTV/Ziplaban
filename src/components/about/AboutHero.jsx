@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowDown, ArrowRight, Sparkles } from 'lucide-react';
 import { useNavigation } from '../../context/NavigationContext';
-import { motion } from 'framer-motion';
+import { motion } from '../../context/MotionPreference';
 
 export default function AboutHero({ onDiscoverClick }) {
   const { navigate } = useNavigation();

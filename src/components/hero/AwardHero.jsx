@@ -1,3 +1,4 @@
+import { useMotionPreference } from '../../context/MotionPreference';
 import ProductImage from '../menu/ProductImage';
 import { MENU_PRODUCTS } from '../../data/menuCatalog';
 import React, { useEffect, useRef, useState } from 'react';
@@ -9,7 +10,7 @@ const benefits = [[Leaf, 'Premium', 'Ingredients'], [Heart, 'Freshly', 'Made'], 
 
 export default function AwardHero({ onOpenSearch }) {
   const { navigate } = useNavigation();
-  const [motionPaused, setMotionPaused] = useState(false);
+  const { disabled: motionPaused, setPaused: setMotionPaused, reduce } = useMotionPreference();
   const [inView, setInView] = useState(true);
   const [mascotBouncing, setMascotBouncing] = useState(false);
   const heroRef = useRef(null);
@@ -49,7 +50,7 @@ export default function AwardHero({ onOpenSearch }) {
           <span className="reference-arrivals-arrow"><ArrowRight /></span>
         </button>
       </div>
-      <button className="reference-motion-toggle" onClick={() => setMotionPaused(!motionPaused)} aria-label={motionPaused ? 'Resume hero animation' : 'Pause hero animation'} aria-pressed={motionPaused}>
+      <button className="reference-motion-toggle" disabled={reduce} onClick={() => setMotionPaused(!motionPaused)} aria-label={motionPaused ? 'Resume hero animation' : 'Pause hero animation'} aria-pressed={motionPaused}>
         {motionPaused ? <Play size={13} /> : <Pause size={13} />}<span>{motionPaused ? 'Resume motion' : 'Pause motion'}</span>
       </button>
     </section>

@@ -15,7 +15,7 @@ export default function InteractiveMap({ locations, activeStoreId, onSelectStore
           <span className="tracking-widest uppercase text-[10px] text-white">ZIP LABAN RADAR • MALAPPURAM REGION</span>
         </span>
         <span className="bg-[#8DBA38]/20 text-[#8DBA38] border border-[#8DBA38]/30 px-2.5 py-1 rounded-full text-[10px] font-black uppercase">
-          2 Active Branches
+          {locations.length} {locations.length === 1 ? 'Matching Branch' : 'Matching Branches'}
         </span>
       </div>
 
@@ -53,7 +53,7 @@ export default function InteractiveMap({ locations, activeStoreId, onSelectStore
         </svg>
 
         {/* PIN 1: MALAPPURAM */}
-        <div 
+        {locations.some(store => store.id === 'malappuram') && <button type="button" aria-label="Select malappuram branch" aria-pressed={activeStoreId === 'malappuram'}
           onClick={() => onSelectStore('malappuram')}
           className="absolute top-[34%] left-[62%] -translate-x-1/2 -translate-y-1/2 cursor-pointer group z-20"
         >
@@ -79,10 +79,10 @@ export default function InteractiveMap({ locations, activeStoreId, onSelectStore
               </span>
             </div>
           </motion.div>
-        </div>
+        </button>}
 
         {/* PIN 2: KOTTAKKAL */}
-        <div 
+        {locations.some(store => store.id === 'kottakkal') && <button type="button" aria-label="Select kottakkal branch" aria-pressed={activeStoreId === 'kottakkal'}
           onClick={() => onSelectStore('kottakkal')}
           className="absolute top-[60%] left-[38%] -translate-x-1/2 -translate-y-1/2 cursor-pointer group z-20"
         >
@@ -108,7 +108,7 @@ export default function InteractiveMap({ locations, activeStoreId, onSelectStore
               </span>
             </div>
           </motion.div>
-        </div>
+        </button>}
 
       </div>
 

@@ -1,3 +1,4 @@
+import EnquiryDelivery from './EnquiryDelivery';
 import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { X, ArrowRight, Mail, Sparkles } from 'lucide-react';
@@ -25,12 +26,12 @@ export default function FranchiseModal({ isOpen=false, onClose=()=>{} }) {
   <div className="franchise-layout"><aside className="franchise-story"><span className="franchise-eyebrow"><Sparkles size={15}/> A SWEETER NEXT CHAPTER</span><h2 id="franchise-title">Your city.<br/>Our happiness.</h2><p>Let’s talk about bringing ZIP LABAN to a new neighbourhood.</p><img src="/images/zip_boy_mascot.png" alt="ZIP LABAN mascot"/><span className="franchise-handwritten">Good things grow together ♡</span></aside>
   <div className="franchise-form-panel"><span className="franchise-eyebrow">FRANCHISE INQUIRY</span><h3>Tell us your idea.</h3><p>A few details to help us start the conversation. Fields marked * are required.</p>
   <form onSubmit={event=>{event.preventDefault();setDraftReady(true);}}>
-   <div className="franchise-fields">{[['name','Full name','text','name'],['email','Email address','email','email'],['phone','Phone number','tel','tel'],['city','Proposed city','text','address-level2']].map(([name,label,type,autoComplete])=><label key={name} htmlFor={`franchise-${name}`}>{label} *<input id={`franchise-${name}`} name={name} type={type} autoComplete={autoComplete} value={form[name]} onChange={update} required maxLength={120}/></label>)}</div>
+   <div className="franchise-fields">{[['name','Full name','text','name'],['email','Email address','email','email'],['phone','Phone number','tel','tel'],['city','Proposed city','text','address-level2']].map(([name,label,type,autoComplete])=><label key={name} htmlFor={`franchise-${name}`}>{label} *<input id={`franchise-${name}`} name={name} type={type} autoComplete={autoComplete} value={form[name]} onChange={update} required maxLength={name === 'phone' ? 40 : name === 'email' ? 254 : 120}/></label>)}</div>
    <label htmlFor="franchise-format">Do you have a space in mind?<select id="franchise-format" name="format" value={form.format} onChange={update}><option>Let’s discuss</option><option>I have a location</option><option>I’m looking for a location</option></select></label>
    <label htmlFor="franchise-message">Anything else you’d like to share?<textarea id="franchise-message" name="message" value={form.message} onChange={update} rows={3} maxLength={1500} placeholder="Your location, experience, or questions…"/></label>
-   <p className="franchise-privacy">We’ll prepare an email with these details. Nothing is sent until you send it from your email app.</p>
+   <p className="franchise-privacy">Preparing your inquiry does not send it. Choose a delivery option below when you’re ready.</p>
    <button className="franchise-primary" type="submit">Prepare inquiry <ArrowRight size={18}/></button>
    {draftReady&&<div className="franchise-draft" role="status"><strong>Your inquiry is ready to send.</strong><a href={emailHref}><Mail size={17}/> Open email draft</a><span>No email app? Write to <a href={`mailto:${CONTACT_CONFIG.email}`}>{CONTACT_CONFIG.email}</a>.</span></div>}
-  </form></div></div>
+  {draftReady && <EnquiryDelivery enquiry={{type:'franchise',...form,subject:'Franchise inquiry'}}/>}</form></div></div>
  </dialog>,document.body);
 }

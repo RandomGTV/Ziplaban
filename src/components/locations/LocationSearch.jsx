@@ -18,7 +18,8 @@ export default function LocationSearch({
         <div className="relative flex-1">
           <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#10204A]/40 pointer-events-none" />
           <input
-            type="text"
+            type="search"
+            aria-label="Search branches"
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Search your area (e.g. Malappuram, Kottakkal)..."
@@ -26,6 +27,7 @@ export default function LocationSearch({
           />
           {searchQuery && (
             <button
+              aria-label="Clear branch search"
               onClick={() => onSearchChange('')}
               className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-bold text-[#10204A]/50 hover:text-[#10204A] bg-[#10204A]/5 w-6 h-6 rounded-full flex items-center justify-center cursor-pointer"
             >
@@ -74,6 +76,7 @@ export default function LocationSearch({
           return (
             <button
               key={pill.id}
+              aria-pressed={active}
               onClick={() => onFilterChange(pill.id)}
               className={'px-4 py-2 rounded-full text-xs font-black tracking-wider uppercase transition-all cursor-pointer ' + (
                 active

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight, MapPin } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion } from '../../context/MotionPreference';
 
 export default function LocationsCTA({ onSelectStore }) {
   return (

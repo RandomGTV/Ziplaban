@@ -1,3 +1,6 @@
+import PageMetadata from './components/experience/PageMetadata';
+import { DessertComparisonProvider } from './context/DessertComparison';
+import { MotionPreferenceProvider } from './context/MotionPreference';
 import { PRODUCTS } from './data/products';
 import PageExperience from './components/experience/PageExperience';
 import { ORDERING_ENABLED } from './config/ordering';
@@ -81,7 +84,7 @@ function AppShell() {
   return (
     <div className="min-h-screen bg-[#FFFDF9] text-[#061826] flex flex-col relative selection:bg-[#073BB8] selection:text-white">
       {/* Liquid Interactive Cursor Follower */}
-      <CursorFollower />
+      <PageMetadata /><CursorFollower />
 
       {/* Universal Global Navigation Header across all pages */}
       <GlobalNavbar onOpenSearch={() => setIsSearchOpen(true)} />
@@ -113,10 +116,10 @@ function AppShell() {
 
 export default function App() {
   return (
-    <NavigationProvider>
+    <MotionPreferenceProvider><NavigationProvider>
       <CartProvider>
-        <AppShell />
+        <DessertComparisonProvider><AppShell /></DessertComparisonProvider>
       </CartProvider>
-    </NavigationProvider>
+    </NavigationProvider></MotionPreferenceProvider>
   );
 }

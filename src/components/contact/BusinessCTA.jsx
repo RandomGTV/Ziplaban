@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from '../../context/MotionPreference';
 import { Briefcase, ArrowRight, Sparkles, Mail } from 'lucide-react';
 import { CONTACT_CONFIG } from '../../data/contactData';
 

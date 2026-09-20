@@ -8,10 +8,11 @@ export default function NavLink({ name, path, isLight = false, isScrolled = fals
   const isActive = path === '/' ? currentPath === '/' : currentPath.startsWith(path);
 
   const handleClick = (e) => {
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     e.preventDefault();
     if (onClick) onClick();
-    navigate(path);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (currentPath === path) window.scrollTo({ top: 0, behavior: 'instant' });
+    else navigate(path);
   };
 
   // Determine text and underline color

@@ -1,6 +1,8 @@
+import EnquiryDelivery from '../EnquiryDelivery';
 import { CONTACT_CONFIG } from '../../data/contactData';
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
+import { motion } from '../../context/MotionPreference';
 import { Send, CheckCircle2, AlertCircle, ArrowRight, Heart, Sparkles } from 'lucide-react';
 import { useNavigation } from '../../context/NavigationContext';
 
@@ -126,11 +128,12 @@ export default function ContactForm({ selectedSubject, onSubjectChange }) {
                     </h3>
                     <p className="text-sm sm:text-base text-gray-600 max-w-md mx-auto leading-relaxed font-medium">
                       Thanks for reaching out, <span className="font-bold text-[#073BB8]">{formData.fullName || 'friend'}</span>.
-                      Open your email draft below, then send it from your email app. Nothing has been sent yet.
+                      Choose a delivery option below. The email draft lets you send a copy from your email app.
                     </p>
                   </div>
 
                   <a className="inline-flex px-6 py-3 rounded-full bg-[#073BB8] text-white font-bold" href={`mailto:${CONTACT_CONFIG.email}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.fullName}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\n${formData.message}`)}`}>Open email draft →</a>
+<EnquiryDelivery enquiry={{type:'contact',name:formData.fullName,email:formData.email,phone:formData.phone,subject:formData.subject,message:formData.message}}/>
                   <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
                     <button
                       type="button"
@@ -181,7 +184,7 @@ export default function ContactForm({ selectedSubject, onSubjectChange }) {
                           Full Name <span className="text-[#073BB8]">*</span>
                         </label>
                         <input
-                          id="fullName" aria-invalid={!!errors.fullName} aria-describedby={errors.fullName ? 'fullName-error' : undefined}
+                          id="fullName" maxLength={120} autoComplete="name" aria-invalid={!!errors.fullName} aria-describedby={errors.fullName ? 'fullName-error' : undefined}
                           type="text"
                           required
                           value={formData.fullName}
@@ -207,7 +210,7 @@ export default function ContactForm({ selectedSubject, onSubjectChange }) {
                           Email Address <span className="text-[#073BB8]">*</span>
                         </label>
                         <input
-                          id="email" aria-invalid={!!errors.email} aria-describedby={errors.email ? 'email-error' : undefined}
+                          id="email" maxLength={254} autoComplete="email" aria-invalid={!!errors.email} aria-describedby={errors.email ? 'email-error' : undefined}
                           type="email"
                           required
                           value={formData.email}
@@ -236,7 +239,7 @@ export default function ContactForm({ selectedSubject, onSubjectChange }) {
                           Phone Number <span className="text-gray-400 text-[10px] font-normal">(Optional)</span>
                         </label>
                         <input
-                          id="phone"
+                          id="phone" maxLength={40} autoComplete="tel"
                           type="tel"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -273,7 +276,7 @@ export default function ContactForm({ selectedSubject, onSubjectChange }) {
                         Message <span className="text-[#073BB8]">*</span>
                       </label>
                       <textarea
-                        id="message" aria-invalid={!!errors.message} aria-describedby={errors.message ? 'message-error' : undefined}
+                        id="message" maxLength={3000} aria-invalid={!!errors.message} aria-describedby={errors.message ? 'message-error' : undefined}
                         rows={4}
                         required
                         value={formData.message}

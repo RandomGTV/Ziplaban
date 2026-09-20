@@ -1,3 +1,4 @@
+import { useDessertComparison } from '../../context/DessertComparison';
 import React, { useId, useRef } from 'react';
 import { ArrowDown, ArrowLeft, ArrowRight, Check, Heart, Leaf, Search, SlidersHorizontal, Sparkles, X } from 'lucide-react';
 import { motion, useReducedMotion } from 'framer-motion';
@@ -35,13 +36,14 @@ export function MenuToolbar({query,onQuery,sort,onSort,count,favoritesOnly,onFav
 export function IngredientChip({children}) {return <span className="menu-ingredient-chip">{children}</span>;}
 
 export function ProductCard({product,favorite,onFavorite,onQuickAdd,index=0}) {
+  const {ids:compareIds,toggle:toggleCompare}=useDessertComparison();
   const {navigate}=useNavigation();
   const reduce=useReducedMotion();
   return <motion.article className="menu-product-card" layout={!reduce} initial={reduce?false:{opacity:0,y:16}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.08}} exit={{opacity:0,y:8}} transition={{duration:reduce?0:.3,delay:reduce?0:(index%3)*.045}}>
     <div className="menu-card-top"><span className={`menu-product-badge ${product.badge==='New'?'menu-product-badge--new':''}`}>{product.badge==='Bestseller'&&<Sparkles size={12}/>} {product.badge||'Made for you'}</span><button className={`menu-heart ${favorite?'is-favorite':''}`} aria-label={`${favorite?'Remove':'Save'} ${product.name} ${favorite?'from':'to'} favourites`} aria-pressed={favorite} onClick={()=>onFavorite(product.id)}><Heart size={18} fill={favorite?'currentColor':'none'}/></button></div>
     <button className="menu-card-photo" aria-label={`View details for ${product.name}`} onClick={()=>navigate(`/product/${product.id}`)}><ProductImage product={product}/></button>
     <div className="menu-card-content"><span className="menu-card-category">{product.category.replaceAll('-',' ')}</span><h3>{product.name}</h3><p>{product.description}</p><div className="menu-ingredients">{product.ingredients.slice(0,3).map(item=><IngredientChip key={item}>{item}</IngredientChip>)}</div><div className="menu-card-order"><strong>{money(product.price)}</strong><button className="menu-primary" onClick={()=>navigate(`/product/${product.id}`)}>Explore dessert <ArrowRight size={17}/></button></div><button className="menu-details" onClick={()=>navigate(`/product/${product.id}`)}>View Details <ArrowRight size={13}/></button></div>
-  </motion.article>;
+  <button className="menu-compare-toggle" aria-pressed={compareIds.includes(product.id)} disabled={!compareIds.includes(product.id)&&compareIds.length>=3} onClick={()=>toggleCompare(product.id)}>{compareIds.includes(product.id)?'Remove from comparison':'Compare dessert'}</button></motion.article>;
 }
 
 export function ProductGrid({products,favorites,onFavorite,onQuickAdd}) {return <motion.div layout className="menu-product-grid">{products.map((product,index)=><ProductCard key={product.id} product={product} index={index} favorite={favorites.includes(product.id)} onFavorite={onFavorite} onQuickAdd={onQuickAdd}/>)}</motion.div>;}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Sparkles, ArrowRight } from 'lucide-react';
 import { useNavigation } from '../../context/NavigationContext';
-import { motion } from 'framer-motion';
+import { motion } from '../../context/MotionPreference';
 
 export default function FutureSection() {
   const { navigate } = useNavigation();

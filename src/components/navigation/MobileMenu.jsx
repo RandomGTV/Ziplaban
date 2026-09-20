@@ -67,8 +67,8 @@ export default function MobileMenu({ isOpen, onClose }) {
 
   const handleLinkClick = (path) => {
     onClose();
-    navigate(path);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (currentPath === path) window.scrollTo({ top: 0, behavior: 'instant' });
+    else navigate(path);
   };
 
   const handleCartClick = () => {

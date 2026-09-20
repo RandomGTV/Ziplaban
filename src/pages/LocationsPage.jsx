@@ -1,6 +1,6 @@
+import { useMotionPreference } from '../context/MotionPreference';
 import React, { useState } from 'react';
 import { LOCATIONS } from '../data/locationsData';
-import { useNavigation } from '../context/NavigationContext';
 import LocationsHero from '../components/locations/LocationsHero';
 import LocationSearch from '../components/locations/LocationSearch';
 import BranchTabs from '../components/locations/BranchTabs';
@@ -12,7 +12,7 @@ import PopularLocationsProducts from '../components/locations/PopularLocationsPr
 import LocalBrandMoment from '../components/locations/LocalBrandMoment';
 import ContactStrip from '../components/locations/ContactStrip';
 import LocationsCTA from '../components/locations/LocationsCTA';
-import { Navigation, ShoppingBag } from 'lucide-react';
+import { Navigation } from 'lucide-react';
 
 function getDistanceKm(lat1, lon1, lat2, lon2) {
   const R = 6371;
@@ -29,34 +29,38 @@ function getDistanceKm(lat1, lon1, lat2, lon2) {
 }
 
 export default function LocationsPage() {
-  const { navigate } = useNavigation();
+  const { disabled: motionDisabled } = useMotionPreference();
   const [activeStoreId, setActiveStoreId] = useState('kottakkal');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('all');
   const [isLocating, setIsLocating] = useState(false);
   const [nearestResult, setNearestResult] = useState(null);
 
-  const activeStore = LOCATIONS.find((s) => s.id === activeStoreId) || LOCATIONS[0];
+  const filteredLocations = LOCATIONS.filter(store => (selectedFilter === 'all' || store.id === selectedFilter) && searchQuery.toLowerCase().trim().split(/\s+/).every(word => (store.name + ' Kerala ' + (store.hasOfficialAddress ? store.address : '')).toLowerCase().includes(word)));
+  const activeStore = filteredLocations.find(store => store.id === activeStoreId) || filteredLocations[0];
+  const resetFilters = () => { setSearchQuery(''); setSelectedFilter('all'); };
+  const [locationError, setLocationError] = useState('');
 
   const scrollToMap = () => {
     const el = document.getElementById('map-section');
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+      el.scrollIntoView({ behavior: motionDisabled ? 'instant' : 'smooth' });
     }
   };
 
   const handleSelectStore = (id) => {
     setActiveStoreId(id);
-    setSelectedFilter('all');
+    resetFilters();
     scrollToMap();
   };
 
   const handleUseMyLocation = () => {
     if (!navigator.geolocation) {
-      alert('Geolocation is not supported by your browser.');
+      setLocationError('Location is unavailable in this browser. Choose a branch below.');
       return;
     }
 
+    setLocationError('');
     setIsLocating(true);
     navigator.geolocation.getCurrentPosition(
       (pos) => {
@@ -76,13 +80,14 @@ export default function LocationsPage() {
             name: closest.name,
             distance: closest.dist,
           });
+          resetFilters();
           setActiveStoreId(closest.id);
           scrollToMap();
         }
       },
       (err) => {
         setIsLocating(false);
-        alert('Could not determine your location. Please choose Malappuram or Kottakkal from the tabs.');
+        setLocationError('Could not determine your location. Please choose Malappuram or Kottakkal below.');
       },
       { timeout: 10000 }
     );
@@ -94,7 +99,7 @@ export default function LocationsPage() {
       {/* 1. Hero Section */}
       <LocationsHero
         onFindBranchClick={scrollToMap}
-        activeStoreId={activeStoreId}
+        activeStoreId={activeStore?.id}
         onSelectStore={handleSelectStore}
       />
 
@@ -129,20 +134,23 @@ export default function LocationsPage() {
             nearestResult={nearestResult}
           />
 
+          {locationError && <p role="alert" className="text-center text-sm text-[#073BB8]">{locationError}</p>}
+          <p role="status" className="text-sm text-center">{filteredLocations.length} {filteredLocations.length === 1 ? 'branch matches' : 'branches match'} your search.</p>
+          {!activeStore && <div className="text-center rounded-3xl bg-[#FFF8EE] p-8"><h3 className="text-xl font-bold">No branches found</h3><p className="my-3">Try Malappuram or Kottakkal, or clear your filters.</p><button className="rounded-full bg-[#073BB8] text-white px-6 py-3" onClick={resetFilters}>Show all branches</button></div>}
           {/* Branch Switcher Tabs */}
           <BranchTabs
-            locations={LOCATIONS}
-            activeStoreId={activeStoreId}
+            locations={filteredLocations}
+            activeStoreId={activeStore?.id}
             onSelectStore={(id) => setActiveStoreId(id)}
           />
 
           {/* Main Map & Branch Card Split View */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-2">
+          {activeStore && <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-2">
             {/* Map Column (60-65% width) */}
             <div className="lg:col-span-7">
               <InteractiveMap
-                locations={LOCATIONS}
-                activeStoreId={activeStoreId}
+                locations={filteredLocations}
+                activeStoreId={activeStore?.id}
                 onSelectStore={(id) => setActiveStoreId(id)}
               />
             </div>
@@ -151,7 +159,7 @@ export default function LocationsPage() {
             <div className="lg:col-span-5">
               <BranchCard store={activeStore} />
             </div>
-          </div>
+          </div>}
 
         </div>
       </section>
@@ -175,7 +183,7 @@ export default function LocationsPage() {
       <LocationsCTA onSelectStore={handleSelectStore} />
 
       {/* 9. Mobile Sticky Bottom Bar */}
-      <div className="sm:hidden fixed bottom-0 left-0 right-0 z-30 p-3 bg-white/95 backdrop-blur-xl border-t border-[#073BB8]/15 shadow-2xl flex items-center gap-3">
+      {activeStore && <div className="sm:hidden fixed bottom-0 left-0 right-0 z-30 p-3 bg-white/95 backdrop-blur-xl border-t border-[#073BB8]/15 shadow-2xl flex items-center gap-3">
         <a
           href={activeStore.mapUrl}
           target="_blank"
@@ -188,7 +196,7 @@ export default function LocationsPage() {
         </a>
 
         
-      </div>
+      </div>}
 
     </div>
   );

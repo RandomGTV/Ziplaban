@@ -9,6 +9,7 @@ export default function BranchTabs({ locations, activeStoreId, onSelectStore }) 
         return (
           <button
             key={store.id}
+            aria-pressed={isSelected}
             onClick={() => onSelectStore(store.id)}
             className={'p-4 sm:p-5 rounded-3xl border-2 transition-all cursor-pointer flex items-center gap-4 text-left group ' + (
               isSelected

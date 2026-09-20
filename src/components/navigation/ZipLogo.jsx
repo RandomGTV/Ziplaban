@@ -2,13 +2,14 @@ import React from 'react';
 import { useNavigation } from '../../context/NavigationContext';
 
 export default function ZipLogo({ scrolled = false, isMobile = false, onClick }) {
-  const { navigate } = useNavigation();
+  const { navigate, currentPath } = useNavigation();
 
   const handleClick = (e) => {
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     e.preventDefault();
     if (onClick) onClick();
-    navigate('/');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (currentPath === '/') window.scrollTo({ top: 0, behavior: 'instant' });
+    else navigate('/');
   };
 
   // Dimensions & sprite coordinates based on scrolled and mobile state

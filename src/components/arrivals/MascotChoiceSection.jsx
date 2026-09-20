@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { ShoppingBag, ArrowRight, Sparkles } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { useNavigation } from '../../context/NavigationContext';
-import { motion } from 'framer-motion';
+import { motion } from '../../context/MotionPreference';
 
 export default function MascotChoiceSection({ products }) {
   const [activeProductId, setActiveProductId] = useState(products[0]?.id || 'hazalnut-bar');
